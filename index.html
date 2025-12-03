@@ -13,21 +13,6 @@
 
   <link rel="stylesheet" href="styles.css">
 
-  <title>My Port<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="styles.css">
-
   <title>My Portfolio</title>
 </head>
 <body>
@@ -228,7 +213,7 @@
       <p>If you’d like to get in touch, feel free to send me a message below:</p>
     </div>
 
-    <form id="contact-form">
+    <form id="contact-form" action="https://formspree.io/f/xvgerjzz" method="POST">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" required>
 
@@ -247,7 +232,6 @@
       const status = document.getElementById("form-status");
 
       function isValidMessage(msg) {
-        // Checks if the message has at least 5 alphanumeric characters
         return msg.replace(/\s/g, '').length >= 5;
       }
 
@@ -266,18 +250,20 @@
         status.textContent = "Sending...";
 
         try {
-          const res = await fetch("/api/contact", {
+          // Formspree handles the POST automatically with the form action
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, message })
+            body: formData,
+            headers: { 'Accept': 'application/json' }
           });
 
           const data = await res.json();
-          if (data.success) {
+          if (res.ok) {
             status.textContent = "Message sent! Thank you.";
             form.reset();
           } else {
-            status.textContent = "Failed to send message. Try again.";
+            status.textContent = data.errors ? data.errors.map(e => e.message).join(", ") : "Failed to send message. Try again.";
           }
         } catch (error) {
           console.error(error);
@@ -288,220 +274,4 @@
   </div>
 </section>
 
-folio</title>
-</head>
-<body>
-  <!-- NAVBAR -->
-  <nav>
-    <div class="left">
-      <a href="/">Adrian Sixto</a>
-    </div>
 
-    <div class="right">
-      <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer">
-        <i class="fa-solid fa-globe"></i>
-        <span>OnlineJobs.ph</span>
-      </a>
-      
-      <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-linkedin"></i>
-        <span>LinkedIn</span>
-      </a>
-      
-      <a href="mailto:sixto.adrian12@gmail.com">
-        <i class="fa-solid fa-envelope"></i>
-        <span>Email</span>
-      </a>
-    </div>
-  </nav>
-
-  <main>
-    <!-- SECTION 1: Hero / About Me -->
-    <section class="hero-section">
-      <div class="text">
-        <h2>Hi, I'm Adrian </h2>
-        <p>I'm a detail-oriented data specialist who enjoys turning complex information into clear, actionable insights. With experience in data management, workflow automation, and dashboard creation, I help teams streamline processes, reduce manual work, and ensure data is accurate and reliable. I take pride in making data work smarter, so teams can focus on making confident, informed decisions.</p>
-        
-        <div class="links">
-          <a href="https://drive.google.com/file/d/1ls7vb5Va4bXUPEEFjlq-i9txoAqqEMbd/view?usp=drive_link">
-            <i class="fa-solid fa-file-lines"></i>
-            <span>Resume</span>
-          </a>
-          <a href="#experience">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Experience</span>
-          </a>
-          <a href="#skills">
-            <i class="fa-solid fa-code"></i>
-            <span>Skills</span>
-          </a>
-          <a href="#work-samples">
-            <i class="fa-solid fa-image"></i>
-            <span>Work Samples</span>
-          </a>
-          <a href="#contact">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Contact</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="headshot">
-        <img src="images/headshot.jpg" alt="Adrian Sixto Headshot">
-      </div>
-    </section>
-
-    <!-- SECTION 2: Resume -->
-    <section id="resume" class="skills-section">
-      <h2>Resume</h2>
-      <div class="text">
-        <p>You can view my full resume <a href="https://drive.google.com/file/d/1ls7vb5Va4bXUPEEFjlq-i9txoAqqEMbd/view?usp=drive_link" target="_blank">here</a>.</p>
-      </div>
-    </section>
-
-    <!-- SECTION 3: Experience -->
-<section id="experience" class="skills-section">
-  <h2>Experience</h2>
-
-  <div class="cells">
-    <div class="cell" title="Sourced 55,000+ social media channels, developed Google Apps Script automation for 500,000+ video links, and implemented new content categories, significantly improving database accuracy and efficiency.">
-      <span class="company">Odyssey Systems</span>
-      <span class="location">San Francisco, Bay Area</span>
-      <span class="job-title">Data Specialist</span>
-      <span class="dates">Jan 2025 - Oct 2025</span>
-    </div>
-
-    <div class="cell" title="Managed large datasets with 99% accuracy, streamlined data entry workflows, and ensured consistency across company databases.">
-      <span class="company">Meistery Global Teams</span>
-      <span class="location">Remote</span>
-      <span class="job-title">Data Entry Specialist</span>
-      <span class="dates">Sep 2024 - Jan 2025</span>
-    </div>
-
-    <div class="cell" title="Produced high-quality promotional videos using CapCut, contributing to increased customer inquiries and reduced production turnaround.">
-      <span class="company">CoaterZ</span>
-      <span class="location">Palm Harbor, Florida</span>
-      <span class="job-title">Content Editor | Part-Time</span>
-      <span class="dates">Aug 2024 - Sep 2024</span>
-    </div>
-
-    <div class="cell" title="Reported bugs during QA sprints and coordinated international user testing, improving build stability and gathering gameplay feedback.">
-      <span class="company">STRYM Global Services</span>
-      <span class="location">Iligan City</span>
-      <span class="job-title">QA Tester | Gig</span>
-      <span class="dates">Jul 2024 - Aug 2024</span>
-    </div>
-
-    <div class="cell" title="Assisted in planning company events and executing administrative tasks with 100% accuracy, improving operational efficiency.">
-      <span class="company">Republic Cement Mindanao Inc.</span>
-      <span class="location">Iligan City</span>
-      <span class="job-title">Community Relations Intern</span>
-      <span class="dates">Sep 2023 - Dec 2023</span>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4: Skills & Tools -->
-<section id="skills" class="skills-section">
-  <h2>Skills & Tools</h2>
-  <div class="cells">
-    <div class="cell" title="I input accurate data with 98% accuracy.">
-      <i class="fa-solid fa-keyboard"></i>
-      <span>Data Entry</span>
-    </div>
-    <div class="cell" title="I clean and validate large datasets.">
-      <i class="fa-solid fa-broom"></i>
-      <span>Data Cleaning & Validation</span>
-    </div>
-    <div class="cell" title="I automate processes using Google Apps Script, Zapier, and Make.com.">
-      <i class="fa-solid fa-gear"></i>
-      <span>Workflow Automation</span>
-    </div>
-    <div class="cell" title="I use Google Sheets at an advanced level.">
-      <i class="fa-solid fa-table"></i>
-      <span>Google Sheets</span>
-    </div>
-    <div class="cell" title="I create dashboards and use Excel functions.">
-      <i class="fa-solid fa-file-excel"></i>
-      <span>Excel</span>
-    </div>
-    <div class="cell" title="I organize content efficiently for analytics and reporting.">
-      <i class="fa-solid fa-folder"></i>
-      <span>Content Organization</span>
-    </div>
-    <div class="cell" title="I collaborate remotely with teams effectively.">
-      <i class="fa-solid fa-users"></i>
-      <span>Remote Collaboration</span>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 5: Interests -->
-<section id="interests" class="skills-section">
-  <h2>Interests</h2>
-  <div class="cells">
-    <div class="cell" title="I enjoy optimizing processes and automating repetitive tasks.">
-      <i class="fa-solid fa-cogs"></i>
-      <span>Process Automation</span>
-    </div>
-    <div class="cell" title="I study behavioral science principles to improve work systems.">
-      <i class="fa-solid fa-brain"></i>
-      <span>Behavioral Science</span>
-    </div>
-    <div class="cell" title="I visualize data to extract insights and support decisions.">
-      <i class="fa-solid fa-chart-bar"></i>
-      <span>Data Visualization</span>
-    </div>
-    <div class="cell" title="I practice strength training to maintain physical fitness.">
-      <i class="fa-solid fa-dumbbell"></i>
-      <span>Strength Training</span>
-    </div>
-    <div class="cell" title="I apply systems thinking to solve complex problems.">
-      <i class="fa-solid fa-network-wired"></i>
-      <span>Systems Thinking</span>
-    </div>
-  </div>
-</section>
-
-
-    <!-- SECTION 6: Work Samples -->
-    <section id="work-samples" class="skills-section">
-      <h2>Work Samples</h2>
-      <div class="cells">
-        <div class="cell">
-          <img src="images/sample1.png" alt="Work Sample 1">
-          <a href="https://link-to-sample1.com" target="_blank">View Project</a>
-        </div>
-        <div class="cell">
-          <img src="images/sample2.png" alt="Work Sample 2">
-          <a href="https://link-to-sample2.com" target="_blank">View Project</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 7: Contact -->
-    <section id="contact" class="contact-section">
-      <h2>Contact</h2>
-
-      <div class="group">
-        <div class="text">
-          <p>If you’d like to get in touch, feel free to send me a message below:</p>
-        </div>
-
-        <form>
-          <label for="name">Name</label>
-          <input type="text" id="name">
-
-          <label for="email">Email</label>
-          <input type="email" id="email">
-
-          <label for="message">Message</label>
-          <textarea id="message" cols="30" rows="10"></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
