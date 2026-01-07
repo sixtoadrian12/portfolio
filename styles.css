@@ -83,7 +83,7 @@ nav .right a span {
 }
 
 .hero-section .text h2 {
-  font-size: 45px;
+  font-size: 35px;
 }
 
 .hero-section .text .links {
@@ -272,23 +272,282 @@ nav .right a span {
 .contact-section .group form button:hover {
   filter: brightness(.9);
 }
-
-/* RESPONSIVE */
-@media (max-width: 850px) {
-  .hero-section .text h2 { font-size: 35px; }
+/* PORTFOLIO SECTION */
+.carousel {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 20px 0;
 }
 
-@media (max-width: 740px) {
-  .hero-section { flex-direction: column-reverse; }
-  .hero-section .headshot img { width: 300px; }
-  .contact-section .group { flex-direction: column; }
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+.automation-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* PORTFOLIO CARD */
+.portfolio-card {
+  width: 240px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: scale(1.08) translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.portfolio-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.portfolio-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #1a1c20;
+}
+
+.portfolio-card .short-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* MODAL OVERLAY WITH BLUR */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(238, 239, 241, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* CHANGE: Use flex + opacity/visibility for animation */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* ZOOMED CARD */
+.modal-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%; /* Ensure it fits mobile */
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  position: relative;
+  
+  /* CHANGE: Start smaller for the zoom-in effect */
+  transform: scale(0.8) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ACTIVE STATE - Triggers both animations */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.modal-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #1a1c20;
+}
+
+.modal-card .full-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.modal-card .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #4a76ee;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-card .close-btn:hover {
+  background: #1a1c20;
+}
+/* Add this to your existing CSS section */
+.modal-link {
+  color: #4a76ee; 
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-link:hover {
+  color: #2a4dad;
+}
+/* 1. This prepares the card for the movement */
+.portfolio-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px; /* Optional: makes the corners look cleaner with a shadow */
+  overflow: hidden;
+}
+
+/* 2. This is what happens when the user hovers */
+.portfolio-card:hover {
+  transform: translateY(-8px); /* Lifts the card up slightly */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Adds a soft "floating" shadow */
+}
+
+/* 3. Optional: Dim the image slightly on hover to make it feel interactive */
+.portfolio-card:hover img {
+  filter: brightness(0.9);
+  transition: filter 0.3s ease;
+}
+/* Layout for the Automation Section */
+.automation-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Allows stacking on mobile */
+  padding: 20px;
+}
+
+/* The Card Styling */
+.portfolio-card {
+  width: 350px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  border: 1px solid #eee;
+  
+  /* Critical for smooth transition */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 400px; /* Base height */
+}
+
+/* The Expanded State */
+.portfolio-card.is-expanded {
+  max-height: 800px; /* Allow it to grow */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Container for the full description */
+.full-desc-container {
+  padding: 0 20px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.portfolio-card.is-expanded .full-desc-container {
+  max-height: 300px;
+  opacity: 1;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+.view-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 20px;
+  background-color: #6366f1; /* You can change this color */
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.view-btn:hover {
+  background-color: #4f46e5;
+}
+/* MOBILE OPTIMIZATIONS */
 @media (max-width: 600px) {
-  nav { padding: 0 20px; }
-  nav .right a { font-size: 22px; }
-  nav .right a span { display: none; }
-  .hero-section { padding: 0 20px; }
-  .skills-section { padding: 0 20px; }
-  .contact-section { padding: 0 20px; }
+  /* 1. Adjust the Hero Section for stacking */
+  .hero-section {
+    flex-direction: column-reverse;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  .hero-section .headshot img {
+    width: 200px; /* Smaller headshot for mobile */
+  }
+
+  /* 2. Make Modal Card take up more space so text is readable */
+  .modal-card {
+    padding: 20px;
+    width: 95%;
+    margin: 10px;
+  }
+
+  /* 3. Adjust Portfolio Cards to be wider on mobile */
+  .portfolio-card {
+    width: 100%; /* Take full width of the screen */
+    max-width: none;
+  }
+
+  /* 4. Fix Navigation padding */
+  nav {
+    padding: 0 20px;
+  }
+  
+  nav .right span {
+    display: none; /* Hides text, keeps icons to save space */
+  }
 }
