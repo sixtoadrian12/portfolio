@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
     currentElement = null;
   }
 
-  // Handle Experience section (title attribute)
-  document.querySelectorAll('#experience .cell[title]').forEach(cell => {
+  // Handle Experience section (data-tooltip attribute)
+  document.querySelectorAll('#experience .cell[data-tooltip]').forEach(cell => {
     cell.addEventListener('mouseenter', () => {
       currentElement = cell;
-      showTooltip(cell, cell.getAttribute('title'));
+      showTooltip(cell, cell.getAttribute('data-tooltip'));
     });
     cell.addEventListener('mouseleave', hideTooltip);
   });
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Reposition on scroll
   window.addEventListener('scroll', () => {
     if (currentElement) {
-      const text = currentElement.getAttribute('title') || 
+      const text = currentElement.getAttribute('data-tooltip') || 
                    currentElement.querySelector('.tooltip')?.textContent;
       if (text) showTooltip(currentElement, text);
     }
