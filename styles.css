@@ -685,3 +685,11 @@ nav .right a:hover .fa-globe {
 .form-alert i {
   margin-right: 10px;
 }
+.hero-section .text {
+    max-width: 850px; /* Limits the width to roughly 75-80 characters per line */
+    line-height: 1.4;  /* Increases vertical space between lines for better clarity */
+}
+
+.hero-section .text p {
+    margin-bottom: 15px; /* Adds consistent breathing room between your two paragraphs */
+}
