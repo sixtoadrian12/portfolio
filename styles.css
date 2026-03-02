@@ -694,5 +694,14 @@ nav .right a:hover .fa-globe {
     margin-bottom: 15px; /* Adds consistent breathing room between your two paragraphs */
 }
 p {
-  margin-top: 25px;
+  margin-top: 20px;
+}
+.skills-section .cell p {
+  margin-top: 5px; /* Overrides the global p margin for these small labels */
+  line-height: 1.2;
+}
+#capabilities .cell span, 
+#capabilities .cell p {
+  text-align: center;
+  width: 100%;
 }
