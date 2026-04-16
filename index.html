@@ -1,530 +1,1311 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrian Sixto — Data & Automation Specialist</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="shortcut icon" href="favicon.ico">
-    <title>Adrian Sixto | Portfolio</title>
-  </head>
-  <body>
-    <!-- HEADER & NAVBAR -->
-    <header>
-      <nav>
-        <div class="left">
+
+  <style>
+    /* ── TOKENS ─────────────────────────────── */
+    :root {
+      --bg:       #F5F3EF;
+      --surface:  #FFFEFB;
+      --border:   #E2DED7;
+      --text:     #1A1815;
+      --muted:    #7A746B;
+      --accent:   #2B5CE6;
+      --accent-h: #1A40C2;
+      --serif:    'DM Serif Display', Georgia, serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+      --radius:   10px;
+      --max:      1160px;
+      --transition: 0.22s ease;
+    }
+
+    /* ── RESET ──────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; transition: color var(--transition); }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT ─────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 48px; }
+
+    /* ── NAV ────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,243,239,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.01em;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: background var(--transition), color var(--transition);
+    }
+    .nav-links a:hover { background: var(--border); color: var(--text); }
+    .nav-links a.cta {
+      background: var(--text);
+      color: var(--bg);
+      margin-left: 6px;
+    }
+    .nav-links a.cta:hover { background: #333; color: #fff; }
+    .nav-links a i { font-size: 0.8rem; }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      padding: 100px 0 90px;
+      display: flex;
+      align-items: center;
+      gap: 72px;
+    }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--muted);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #4A453E;
+      max-width: 560px;
+    }
+    .hero-metric {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 28px 0;
+    }
+    .hero-metric .num {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .hero-metric .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.3;
+      max-width: 180px;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-h); color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--text); }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 280px;
+    }
+    .hero-photo img {
+      width: 280px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 14px;
+      filter: grayscale(12%);
+    }
+    .hero-photo-placeholder {
+      width: 280px;
+      height: 340px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ── SECTION SHARED ─────────────────────── */
+    section { padding: 80px 0; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      line-height: 1.15;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ── CAPABILITIES ───────────────────────── */
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .cap-cell {
+      background: var(--surface);
+      padding: 28px 26px;
+      transition: background var(--transition);
+    }
+    .cap-cell:hover { background: #FFF9F2; }
+    .cap-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .cap-cell h3 {
+      font-size: 0.93rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .cap-cell p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── EXPERIENCE ─────────────────────────── */
+    .experience-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr 180px;
+      align-items: start;
+      gap: 20px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-company { font-weight: 600; font-size: 0.92rem; line-height: 1.4; }
+    .exp-location { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
+    .exp-role { font-size: 0.9rem; color: #4A453E; }
+    .exp-bullet {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+    .exp-dates {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── SKILLS ─────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .skill-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+    /* FA fallback icons stay accent-colored */
+    .skill-icon .fa-solid,
+    .skill-icon .fa-regular { color: var(--accent); font-size: 1rem; }
+    /* Devicon brand logos render in full color */
+    .skill-icon [class^="devicon-"],
+    .skill-icon [class*=" devicon-"] { font-size: 1.5rem; }
+    /* Custom color overrides for specific logos */
+    .skill-icon .devicon-googlecloud-plain { color: #4285F4; }
+    .skill-icon .devicon-mysql-plain { color: #00758F; }
+    /* SVG-based brand logo images */
+    .skill-icon img { width: 24px; height: 24px; object-fit: contain; }
+    .skill-name { font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
+    .skill-desc { font-size: 0.79rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── WORK SAMPLES ───────────────────────── */
+    .work-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 4px;
+      width: fit-content;
+    }
+    .work-tab {
+      padding: 8px 20px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all var(--transition);
+      border: none;
+      background: transparent;
+    }
+    .work-tab.active { background: var(--text); color: var(--bg); }
+    .work-panel { display: none; }
+    .work-panel.active { display: block; }
+
+    /* Card grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+    }
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background: var(--surface);
+      padding: 8px;
+    }
+    .card-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 2rem;
+    }
+    .card-body { padding: 18px 20px 22px; }
+    .card-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; line-height: 1.35; }
+    .card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .card-footer {
+      padding: 0 20px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--bg);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .visitor-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .visitor-note strong { color: var(--text); }
+
+    /* ── MODAL ──────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 24, 21, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
+    .modal-card {
+      background: var(--surface);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 720px;
+      padding: 36px 40px;
+      position: relative;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+      color: var(--text);
+    }
+    .modal-close:hover { background: var(--border); }
+    #modalImg {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 9px;
+      margin-bottom: 24px;
+      background: var(--bg);
+      padding: 8px;
+    }
+    #modalTitle {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    #modalTitle a { color: var(--text); }
+    #modalTitle a:hover { color: var(--accent); }
+    #modalDesc { font-size: 0.88rem; color: #4A453E; line-height: 1.75; }
+    #modalDesc h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 20px 0 8px;
+    }
+    #modalDesc ul, #modalDesc ol {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    #modalDesc a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 16px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    #modalDesc a:hover { background: #333; }
+
+    /* ── CONTACT ────────────────────────────── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .contact-info p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+    .contact-direct {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .contact-direct p { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+    .contact-direct a { font-size: 0.9rem; color: var(--accent); }
+    .contact-direct a:hover { color: var(--accent-h); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; }
+    .form-group input,
+    .form-group textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color var(--transition);
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #B5B0A8; }
+
+    .send-btn {
+      align-self: flex-start;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .send-btn:hover { background: var(--accent-h); }
+
+    .form-alert {
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: none;
+    }
+    .form-alert.success { display: block; background: #EEF7EE; color: #1a6b1a; border: 1px solid #BEE0BE; }
+    .form-alert.error   { display: block; background: #FFF0F0; color: #9B1C1C; border: 1px solid #FCCACA; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-name { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { font-size: 0.82rem; color: var(--muted); }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .nav-inner { padding: 0 24px; }
+      .footer-inner { padding: 0 24px; }
+      .hero { flex-direction: column-reverse; padding: 60px 0 60px; gap: 40px; }
+      .hero-photo { width: 100%; }
+      .hero-photo img, .hero-photo-placeholder { width: 100%; height: 280px; }
+      .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .exp-dates { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a span { display: none; }
+      .capabilities-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FADE-IN ANIMATION ──────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text > * { animation: fadeUp 0.6s ease both; }
+    .hero-eyebrow { animation-delay: 0.05s; }
+    .hero h1      { animation-delay: 0.12s; }
+    .hero-desc    { animation-delay: 0.19s; }
+    .hero-metric  { animation-delay: 0.26s; }
+    .hero-cta     { animation-delay: 0.33s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Adrian Sixto</span>
+    <div class="nav-links">
+      <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+      </a>
+      <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-upwork"></i><span>Upwork</span>
+      </a>
+      <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-briefcase"></i><span>OnlineJobs.ph</span>
+      </a>
+      <a href="mailto:sixto.adrian12@gmail.com" class="cta">
+        <i class="fa-solid fa-envelope"></i><span>Email Me</span>
+      </a>
+    </div>
   </div>
-        <div class="right">
-          <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>OnlineJobs.ph</span>
-          </a>
-          <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-upwork"></i>
-    <span>Upwork</span>
-  </a>
-          <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-linkedin"></i>
-            <span>LinkedIn</span>
-          </a>
-          <a href="mailto:sixto.adrian12@gmail.com">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Email</span>
-          </a>
-        </div>
-      </nav>
-    </header>
+</nav>
 
-    <main>
-      <!-- HERO SECTION -->
-      <section class="hero-section">
-    <div class="text">
-     <h1>Hi, I'm Adrian!</h1>
-<h2>Data & Automation Specialist</h2>
-<p>Data Automation Specialist who transforms manual, high-volume workflows into scalable systems — so your team stops doing by hand what a system could do automatically.</p>
-<p>Reduced an 8 to 10 hour verification process to under 60 minutes through Google Apps Script automation, processing over 600,000 records with 99 percent accuracy.</p>
-<p>I specialize in workflow automation, API integrations, structured data validation, and dashboard systems that eliminate bottlenecks and improve operational efficiency.</p>
-<div class="links">
-            <a href="https://drive.google.com/file/d/1dtqBWUH1y92_FhQrmBlPYk7aeef1swD8/view?usp=sharing" rel="noopener noreferrer">
-    <i class="fa-solid fa-file-lines"></i>
-    <span>Resume</span>
-  </a>
-            <a href="#experience">
-              <i class="fa-solid fa-briefcase"></i>
-              <span>Experience</span>
-            </a>
-            <a href="#skills">
-              <i class="fa-solid fa-code"></i>
-              <span>Skills</span>
-            </a>
-            <a href="#work-samples">
-              <i class="fa-solid fa-image"></i>
-              <span>Work Samples</span>
-            </a>
-            <a href="#contact">
-              <i class="fa-solid fa-envelope"></i>
-              <span>Contact</span>
-            </a>
-          </div>
-        </div>
+<main>
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Data &amp; Automation Specialist</p>
+      <h1>Turning manual work<br>into <em>systems that scale</em></h1>
+      <p class="hero-desc">
+        I build automation workflows, data pipelines, and dashboards that eliminate bottlenecks — so your team spends time on work that actually matters.
+      </p>
 
-        <div class="headshot">
-          <img src="adrian-profile.jpg" alt="Adrian Sixto Headshot">
-        </div>
-      </section>
-</section>
-
-      <section id="capabilities" class="skills-section">
-        <h2>Core Capabilities</h2>
-        <div class="cells">
-          <div class="cell">
-            <i class="fa-solid fa-bolt"></i>
-            <span>Workflow Automation</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">Using Google Apps Script</p>
-          </div>
-          <div class="cell">
-            <i class="fa-solid fa-link"></i>
-            <span>API Integration</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">Metadata Processing</p>
-          </div>
-          <div class="cell">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>Data Validation</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">Structured Systems</p>
-          </div>
-          <div class="cell">
-            <i class="fa-solid fa-chart-simple"></i>
-            <span>Dashboard Dev</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">KPI Reporting</p>
-          </div>
-          <div class="cell">
-            <i class="fa-solid fa-database"></i>
-            <span>Database Management</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">Cleanup Logic</p>
-          </div>
-          <div class="cell">
-            <i class="fa-solid fa-robot"></i>
-            <span>AI Automation</span>
-            <p style="font-size: 14px; color: #555; margin-top: 5px;">Enhanced via Make.com</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" class="skills-section">
-      <!-- EXPERIENCE -->
-  <section id="experience" class="skills-section">
-    <h2>Experience</h2>
-    <div class="cells">
-      <div class="cell" data-tooltip="Sourced 65,000+ social media channels and automated ~600,000 video links, boosting efficiency and accuracy. Added new content categories, expanding coverage by 20%.">
-        <span class="company">Odyssey</span>
-        <span class="location">San Francisco, Bay Area | Remote</span>
-        <span class="job-title">Data Specialist</span>
-        <span class="dates">Jan 2025 - Nov 2025</span>
+      <div class="hero-cta">
+        <a href="https://drive.google.com/file/d/1dtqBWUH1y92_FhQrmBlPYk7aeef1swD8/view?usp=sharing" target="_blank" class="btn btn-primary">
+          <i class="fa-solid fa-file-lines"></i> View Resume
+        </a>
+        <a href="#work-samples" class="btn btn-outline">
+          <i class="fa-solid fa-arrow-down"></i> See My Work
+        </a>
       </div>
+    </div>
 
-      <div class="cell" data-tooltip="Managed large datasets with 99% accuracy, streamlined data entry workflows, and ensured compliance with data protection policies.">
-        <span class="company">Meistery Global Teams</span>
-        <span class="location">Remote</span>
-        <span class="job-title">Data Entry & Spreadsheet Specialist</span>
-        <span class="dates">Sep 2024 - Jan 2025</span>
-      </div>
+    <div class="hero-photo">
+      <img src="adrian-profile.jpg" alt="Adrian Sixto">
+    </div>
+  </section>
 
-      <div class="cell" data-tooltip="Produced promotional videos using CapCut, increasing customer inquiries by 30% and reducing production time by 25%.">
-        <span class="company">CoaterZ</span>
-        <span class="location">Palm Harbor, Florida | Remote</span>
-        <span class="job-title">Content Editor | Part-Time</span>
-        <span class="dates">Aug 2024 - Sep 2024</span>
-      </div>
+  <hr class="divider">
 
-      <div class="cell" data-tooltip="Reported 50+ bugs and coordinated international user testing with 5,000+ participants, improving build stability and collecting feedback.">
-        <span class="company">STRYM Global Services</span>
-        <span class="location">Iligan City, Lanao del Norte | Remote</span>
-        <span class="job-title">QA Tester | Gig</span>
-        <span class="dates">Jul 2024 - Aug 2024</span>
-      </div>
-
-      <div class="cell" data-tooltip="Assisted in planning events, managed schedules, and executed administrative tasks, improving operational efficiency by 20%.">
-        <span class="company">Republic Cement Mindanao Incorporated</span>
-        <span class="location">Iligan City, Lanao del Norte</span>
-        <span class="job-title">Community Relations Intern</span>
-        <span class="dates">Sep 2023 - Dec 2023</span>
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="container">
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title">Core Capabilities</h2>
+      <div class="capabilities-grid">
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Workflow Automation</h3>
+          <p>Google Apps Script, n8n, Make.com — turning repetitive manual tasks into zero-touch processes.</p>
+        </div>
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-link"></i></div>
+          <h3>API Integration</h3>
+          <p>Connecting external APIs to internal systems for real-time data retrieval and metadata processing.</p>
+        </div>
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Data Validation</h3>
+          <p>Structured audit logic and strict validation rules that ensure consistent, high-accuracy datasets.</p>
+        </div>
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3>Dashboard Development</h3>
+          <p>Interactive KPI dashboards in Google Sheets — filters, charts, and automated pivot summaries.</p>
+        </div>
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-database"></i></div>
+          <h3>Data Cleaning &amp; Management</h3>
+          <p>Deduplication, standardization, and cleanup logic that transforms raw data into reliable records.</p>
+        </div>
+        <div class="cap-cell">
+          <div class="cap-icon"><i class="fa-solid fa-robot"></i></div>
+          <h3>AI-Enhanced Pipelines</h3>
+          <p>Integrating LLMs (Gemini, Claude) into workflows for intelligent triage, analysis, and response automation.</p>
+        </div>
       </div>
     </div>
   </section>
 
-      <!-- SKILLS & TOOLS -->
-      <section id="skills" class="skills-section">
-    <h2>Skills & Tools</h2>
-    <div class="cells">
-      <div class="cell">
-        <i class="fa-solid fa-table"></i>
-        <span>Google Sheets (Advanced)</span>
-        <span class="tooltip">I use Google Sheets extensively for complex formulas, structured data management, dashboards, and automated workflows to maintain accuracy and efficiency.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-file-excel"></i>
-        <span>Excel</span>
-        <span class="tooltip">I work with Excel to analyze data, organize large datasets, and build clear reports that support decision making.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-broom"></i>
-        <span>Data Cleaning & Validation</span>
-        <span class="tooltip">I clean, standardize, and validate data to ensure consistency, reliability, and high overall data quality.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-check"></i>
-        <span>Data Accuracy Review</span>
-        <span class="tooltip">I review and audit datasets carefully to catch errors, maintain data integrity, and meet accuracy standards.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-gear"></i>
-        <span>Workflow Automation</span>
-        <span class="tooltip">I specialize in automating repetitive tasks by leveraging Google Apps Script, Make.com, and AI-powered tools. My goal is to eliminate manual work and significantly boost operational efficiency.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Dashboard Design & Data Visualization</span>
-        <span class="tooltip">I design dashboards and visualizations that turn raw data into clear, actionable insights for better decisions.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-folder"></i>
-        <span>Content Curation</span>
-        <span class="tooltip">I organize, categorize, and manage content systematically to support analytics, reporting, and workflow optimization.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-users"></i>
-        <span>CRM Tools & Remote Collaboration</span>
-        <span class="tooltip">I use CRM tools to manage structured data, track records accurately, and support efficient team workflows. I also collaborate effectively with remote teams using digital tools, maintaining clear communication, organization, and accountability.</span>
-      </div>
-      <div class="cell">
-    <i class="fa-solid fa-code"></i>
-    <span>Web Basics</span>
-    <span class="tooltip">I built this portfolio website from scratch using basic HTML and CSS to showcase my projects in a way that is clean and responsive.</span>
-  </div>
-    </div>
-  </section>
+  <hr class="divider">
 
-      <!-- INTERESTS -->
-      <section id="interests" class="skills-section">
-    <h2>Interests</h2>
-    <div class="cells">
-      <div class="cell">
-        <i class="fa-solid fa-cogs"></i>
-        <span>Process Automation & Efficiency</span>
-        <span class="tooltip">I enjoy improving processes and automating repetitive tasks to save time, reduce errors, and increase overall efficiency.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-chart-bar"></i>
-        <span>Data Visualization & Dashboard Design Strategies</span>
-        <span class="tooltip">I am interested in designing dashboards and visual strategies that make complex data easy to understand and act on.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-brain"></i>
-        <span>Data Analytics</span>
-        <span class="tooltip">I enjoy analyzing data to uncover patterns, generate insights, and support better decision making.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-robot"></i>
-        <span>AI-Enhanced Workflows</span>
-        <span class="tooltip">I love exploring how AI-powered tools can enhance workflows, automate tasks, and improve productivity.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-clock"></i>
-        <span>Productivity & Workflow Optimization</span>
-        <span class="tooltip">I am interested in improving workflows to help teams work faster and more effectively.</span>
-      </div>
-      <div class="cell">
-        <i class="fa-solid fa-network-wired"></i>
-        <span>Systems Thinking & Operational Strategy</span>
-        <span class="tooltip">I enjoy approaching problems from a systems perspective, understanding how processes connect, and improving operational strategy.</span>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Career History</p>
+      <h2 class="section-title">Experience</h2>
+      <div class="experience-list">
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-company">Odyssey</div>
+            <div class="exp-location">San Francisco, Bay Area · Remote</div>
+          </div>
+          <div>
+            <div class="exp-role">Data Specialist</div>
+            <p class="exp-bullet">Sourced 65,000+ social media channels; automated ~600,000 video link verifications using Google Apps Script — reducing an 8–10 hour daily task to under 60 minutes. Expanded content category coverage by 20%.</p>
+          </div>
+          <div class="exp-dates">Jan 2025 – Nov 2025</div>
+        </div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-company">Meistery Global Teams</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div>
+            <div class="exp-role">Data Entry &amp; Spreadsheet Specialist</div>
+            <p class="exp-bullet">Managed large-scale datasets with 99% accuracy. Streamlined data entry workflows and ensured compliance with data protection policies across projects.</p>
+          </div>
+          <div class="exp-dates">Sep 2024 – Jan 2025</div>
+        </div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-company">CoaterZ</div>
+            <div class="exp-location">Palm Harbor, FL · Remote</div>
+          </div>
+          <div>
+            <div class="exp-role">Content Editor · Part-Time</div>
+            <p class="exp-bullet">Produced promotional video content using CapCut; increased customer inquiries by 30% and reduced production time by 25%.</p>
+          </div>
+          <div class="exp-dates">Aug 2024 – Sep 2024</div>
+        </div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-company">STRYM Global Services</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div>
+            <div class="exp-role">QA Tester · Gig</div>
+            <p class="exp-bullet">Reported 50+ bugs and coordinated user testing with 5,000+ international participants, improving build stability and structured feedback collection.</p>
+          </div>
+          <div class="exp-dates">Jul 2024 – Aug 2024</div>
+        </div>
+
+        <div class="exp-item">
+          <div>
+            <div class="exp-company">Republic Cement Mindanao</div>
+            <div class="exp-location">Iligan City, PH</div>
+          </div>
+          <div>
+            <div class="exp-role">Community Relations Intern</div>
+            <p class="exp-bullet">Assisted in event planning, schedule management, and administrative operations — improving departmental efficiency by 20%.</p>
+          </div>
+          <div class="exp-dates">Sep 2023 – Dec 2023</div>
+        </div>
+
       </div>
     </div>
   </section>
 
-    <!-- WORK SAMPLES / PORTFOLIO SECTION -->
-  <section id="work-samples" class="skills-section">
-    <h2>Work Samples</h2>
-    <p style="text-align:center; margin-bottom: 30px;">Click any card to view details</p>
+  <hr class="divider">
 
-    <!-- DASHBOARD SAMPLES -->
-    <h3 style="text-align:center; margin-bottom:20px;">Dashboard Samples</h3>
-    <p style="text-align:center; font-size:14px; color:#555; background:#fff; border:1px solid #ddd; padding:10px; border-radius:8px; max-width:600px; margin: 0 auto 20px;">
-  <strong>Visitor Guide:</strong> To test the interactive features, progress bars, and filters, please go to <strong>File > Make a copy</strong> within the Google Sheet. This allows you to explore the automation and logic safely.
-</p>
-  <div class="carousel">
-    <div class="carousel-track">
-      
-      <div class="portfolio-card" data-full-desc="I built this dashboard to transform transactional data into actionable sales insights. I automated the calculation of core metrics including total revenue and order volume. I also integrated a Top 5 Products analysis with dynamic charting so users can identify best sellers at a glance." data-link="https://docs.google.com/spreadsheets/d/1MovhxPJV3H1NXUjzltb6n17adf32EJfSc-tmRU0PaDM/edit?usp=sharing">
-  <img src="dashboard1.png" alt="Dashboard 1">
-  <h3>Sales Performance Dashboard</h3> 
-  <p class="short-desc">I designed this streamlined system to track my revenue, order volume, and product performance.</p>
-</div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Technical Toolkit</p>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skills-grid">
 
-<div class="portfolio-card" data-full-desc="I developed this tool to provide full financial visibility for budget management. I designed a structured raw data entry system that feeds into automated pivot summaries. I included dual chart visualizations to help users quickly compare projected vs actual spending to ensure targets stay on track." data-link="https://docs.google.com/spreadsheets/d/1nSNbcYbQwCJFutFR66mWyMIcfystCuMwoDWOjaIURg0/edit?usp=drive_link">
-  <img src="dashboard2.png" alt="Dashboard 2">
-  <h3>Expense & Budget Dashboard</h3>
-  <p class="short-desc">I created this tracker to give me full visibility over budgets with automated pivot summaries.</p>
-</div>
+        <div class="skill-item">
+          <div class="skill-icon">
+            <!-- Google Sheets green icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#0F9D58"/>
+              <rect x="5" y="7" width="14" height="1.5" fill="white"/>
+              <rect x="5" y="10.5" width="14" height="1.5" fill="white"/>
+              <rect x="5" y="14" width="14" height="1.5" fill="white"/>
+              <rect x="5" y="7" width="1.5" height="8.5" fill="white"/>
+              <rect x="11.25" y="7" width="1.5" height="8.5" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Google Sheets — Advanced</div>
+            <div class="skill-desc">Complex formulas, pivot tables, automated dashboards, and structured data workflows at scale.</div>
+          </div>
+        </div>
 
-<div class="portfolio-card" data-full-desc="I made this solution using complex formulas to calculate Days Until Due and visualize completion via progress bars. I organized the data logic by owner and priority to provide a clear overview of project health, specifically designed to help teams identify workflow bottlenecks." data-link="https://docs.google.com/spreadsheets/d/1JEUrzUrJkFKLBfTNwqQxo3K3VhnNMDFn_RAuPQUJs8E/edit?usp=drive_link">
-  <img src="dashboard3.png" alt="Dashboard 3">
-  <h3>Project Progress Dashboard</h3>
-  <p class="short-desc">I used advanced formulas and dynamic progress bars to help me manage tasks and deadlines.</p>
-</div>
+        <div class="skill-item">
+          <div class="skill-icon">
+            <!-- Excel green icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#217346"/>
+              <path d="M7 7.5L9.8 12L7 16.5H9.2L11 13.4L12.8 16.5H15L12.2 12L15 7.5H12.8L11 10.6L9.2 7.5H7Z" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Microsoft Excel</div>
+            <div class="skill-desc">Data analysis, large dataset organization, and reporting for decision support.</div>
+          </div>
+        </div>
 
-<div class="portfolio-card" data-full-desc="I created this high-performance dashboard to handle retail data efficiently. I built interactive functions that allow users to Filter by Month and Category to drill down into trends. I focused on visualizing key metrics like unit pricing and total sales across various product segments." data-link="https://docs.google.com/spreadsheets/d/1pxr1YZaRuAz38_J2GZIuR94PNra-RP_gifeRoKs2SYw/edit?usp=drive_link">
-  <img src="dashboard4.png" alt="Dashboard 4">
-  <h3>E-Commerce KPI Dashboard</h3>
-  <p class="short-desc">I built this interactive tracker with custom filters to analyze my product and timeframe data.</p>
-</div>
+        <div class="skill-item">
+          <div class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4285F4"/>
+              <path d="M2 17L12 22L22 17V7L12 12L2 7V17Z" fill="#34A853"/>
+              <path d="M12 22V12L22 7V17L12 22Z" fill="#FBBC04"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Google Apps Script</div>
+            <div class="skill-desc">Custom automation scripts for Sheets, Drive, and Gmail, processing 600K+ records at 99% accuracy.</div>
+          </div>
+        </div>
 
-<div class="portfolio-card" data-full-desc="This is my masterpiece dashboard, designed for high-level decision making. I built it to process a massive dataset of 1,000+ records with an advanced filtering system for regions and sales reps. I ensured all five analytical charts refresh simultaneously to provide a seamless, interactive experience for executive users." data-link="https://docs.google.com/spreadsheets/d/1drhT1JIwlsK-8ECtpLmcoUOL_UhTuOYKppM41m75rhk/edit?usp=drive_link">
-  <img src="dashboard5.png" alt="Dashboard 5">
-  <h3>Executive Sales Dashboard</h3>
-  <p class="short-desc">I developed this professional suite to perform deep dive analysis on over 1,000 sales records.</p>
-</div>
+        <div class="skill-item">
+          <div class="skill-icon">
+            <!-- n8n logo -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#EA4B71"/>
+              <text x="2.5" y="16.5" font-family="Arial" font-weight="900" font-size="9" fill="white">n8n</text>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">n8n</div>
+            <div class="skill-desc">Visual workflow automation — multi-step pipelines connecting APIs, Google services, and AI models.</div>
+          </div>
+        </div>
 
+        <div class="skill-item">
+          <div class="skill-icon">
+            <!-- Make.com purple icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#6D00CC"/>
+              <path d="M5 8.5C5 7.67 5.67 7 6.5 7H8C8.83 7 9.5 7.67 9.5 8.5V15.5C9.5 16.33 8.83 17 8 17H6.5C5.67 17 5 16.33 5 15.5V8.5Z" fill="white" opacity="0.9"/>
+              <path d="M10.5 8.5C10.5 7.67 11.17 7 12 7H13.5C14.33 7 15 7.67 15 8.5V15.5C15 16.33 14.33 17 13.5 17H12C11.17 17 10.5 16.33 10.5 15.5V8.5Z" fill="white" opacity="0.6"/>
+              <path d="M16 11C16 10.17 16.67 9.5 17.5 9.5C18.33 9.5 19 10.17 19 11V15.5C19 16.33 18.33 17 17.5 17C16.67 17 16 16.33 16 15.5V11Z" fill="white" opacity="0.35"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Make.com</div>
+            <div class="skill-desc">Scenario-based automation and multi-service integrations for real-time data flows.</div>
+          </div>
+        </div>
+
+       <div class="skill-item">
+          <div class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4285F4"/>
+              <path d="M12 12L2 7V17L12 22L22 17V7L12 12Z" fill="#34A853"/>
+              <path d="M12 12H22V17L12 22V12Z" fill="#EA4335"/>
+              <path d="M2 7L12 12V22L2 17V7Z" fill="#FBBC04"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Google Cloud Console - Basic</div>
+            <div class="skill-desc">Managing APIs, service accounts, and project configurations to support automation pipelines.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#E8F6FA">
+            <!-- MySQL dolphin-inspired icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#00758F"/>
+              <text x="3" y="16" font-family="Arial" font-weight="900" font-size="8" fill="white">SQL</text>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">MySQL / SQL — In Progress</div>
+            <div class="skill-desc">Actively developing SQL skills via MySQL Workbench for structured querying and database operations.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon" style="background:#F5F0FF; gap:3px; flex-direction:row; padding: 4px;">
+            <!-- Gemini -->
+            <svg width="13" height="13" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 28C14 26.0633 13.6267 24.2433 12.88 22.54C12.1567 20.8367 11.165 19.355 9.905 18.095C8.645 16.835 7.16333 15.8433 5.46 15.12C3.75667 14.3733 1.93667 14 0 14C1.93667 14 3.75667 13.6383 5.46 12.915C7.16333 12.1683 8.645 11.165 9.905 9.905C11.165 8.645 12.1567 7.16333 12.88 5.46C13.6267 3.75667 14 1.93667 14 0C14 1.93667 14.3617 3.75667 15.085 5.46C15.8317 7.16333 16.835 8.645 18.095 9.905C19.355 11.165 20.8367 12.1683 22.54 12.915C24.2433 13.6383 26.0633 14 28 14C26.0633 14 24.2433 14.3733 22.54 15.12C20.8367 15.8433 19.355 16.835 18.095 18.095C16.835 19.355 15.8317 20.8367 15.085 22.54C14.3617 24.2433 14 26.0633 14 28Z" fill="url(#gemini_grad)"/>
+              <defs><linearGradient id="gemini_grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#4285F4"/><stop offset="1" stop-color="#9B72CB"/></linearGradient></defs>
+            </svg>
+            <!-- ChatGPT -->
+            <svg width="13" height="13" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.831-3.385 10.079 10.079 0 0 0-10.855 4.835 9.965 9.965 0 0 0-6.215 4.312 10.079 10.079 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.831 3.386 10.079 10.079 0 0 0 10.855-4.835 9.965 9.965 0 0 0 6.215-4.313 10.079 10.079 0 0 0-1.24-11.816zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.497v4.998l-4.331 2.5-4.331-2.5V18z" fill="#10A37F"/>
+            </svg>
+            <!-- Claude -->
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#D97757"/>
+              <text x="3.5" y="16" font-family="Georgia" font-weight="bold" font-size="9" fill="white">Cl</text>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">AI / LLM Tools</div>
+            <div class="skill-desc">Gemini, ChatGPT, and Claude — for intelligent automation, prompt engineering, and AI-powered pipelines.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.5 5.5L2 17L5 22L11.5 10.5L8.5 5.5Z" fill="#0066DA"/>
+              <path d="M22 17L19 22H5L8.5 16H22V17Z" fill="#00AC47"/>
+              <path d="M15.5 5.5L8.5 5.5L15.5 17L22 17L15.5 5.5Z" fill="#FFBA00"/>
+            </svg>
+          </div>
+          <div>
+            <div class="skill-name">Google Drive &amp; Workspace</div>
+            <div class="skill-desc">Document management, trigger,based automation via Drive API, and cross-team collaboration tools.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon">
+            <i class="fa-solid fa-broom" style="color:var(--accent);font-size:1rem"></i>
+          </div>
+          <div>
+            <div class="skill-name">Data Cleaning &amp; Validation</div>
+            <div class="skill-desc">Standardization, deduplication, and strict audit logic to maintain high data quality across large datasets.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon">
+            <i class="fa-solid fa-chart-line" style="color:var(--accent);font-size:1rem"></i>
+          </div>
+          <div>
+            <div class="skill-name">Dashboard Design &amp; Data Viz</div>
+            <div class="skill-desc">KPI dashboards with dynamic filters, charts, and visual summaries for operational decision-making.</div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-icon">
+            <i class="fa-solid fa-users" style="color:var(--accent);font-size:1rem"></i>
+          </div>
+          <div>
+            <div class="skill-name">Remote Collaboration &amp; CRM</div>
+            <div class="skill-desc">CRM data management, async communication, and cross-functional coordination in distributed teams.</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </section>
 
-    <!-- AUTOMATION SAMPLES -->
-  <h3 style="text-align:center; margin-top:50px; margin-bottom:20px;">Automation Samples</h3>
-<div class="automation-row">
-  
-  <div class="portfolio-card" 
-    data-full-desc='<div style="position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 20px;"><iframe src="https://www.loom.com/embed/d34a6d2cc5d3497285d8ba26eabb01a4?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"></iframe></div> 
-    <h4>My Inspiration: Solving the 8-10 Hour Bottleneck</h4>
-    This project was born from a personal challenge. In my previous role, I manually sourced and verified video links, a process that took 8 to 10 hours just to reach a 1,000 link quota. I developed this Google Apps Script automation to handle the heavy lifting, transforming my workflow. I eventually processed an average of 2,500 links per day, completing a 25-hour manual workload in just 30 to 60 minutes maximum. Throughout my tenure, I successfully filtered and audited over 600,000 total records with 99% accuracy.
-    <br><br>
-    <h4>Explore the Tool</h4>
-    The workbook is organized into three sections:
-    <ul style="margin-left: 20px; line-height: 1.6;">
-      <li><strong>Main:</strong> The primary tool interface where you can see processed samples and test the automation.</li>
-      <li><strong>Sample Links:</strong> A repository of raw YouTube URLs ready to be copied and tested.</li>
-      <li><strong>Taxonomy:</strong> The master list of valid categories used by the audit logic.</li>
-    </ul>
-    <br>
-    <h4>How to Test It</h4>
-    1. Navigate to the <strong>Sample Links</strong> sheet and copy any number of raw URLs.<br>
-    2. Paste them into the <strong>Main</strong> sheet under the URL column.<br>
-    3. Use the custom <strong>POV Data Master</strong> menu to run the "Fetch/Update Metadata" and "RUN STRICT AUDIT" functions to see the logic in action.
-    <br><br>
-    <strong>Key Features:</strong>
-    <ul style="margin-left: 20px; line-height: 1.6;">
-      <li><strong>Strict Logic Gates:</strong> Multi-stage audit for durations not less than 1 minute and are at the very least 1080p in quality.</li>
-      <li><strong>Master Cleanup Tool:</strong> One-click batch processing to remove rejected rows and duplicates (highlighted in red).</li>
-      <li><strong>90% Time Reduction:</strong> Reclaimed the majority of the workday through high performance API logic.</li>
-    </ul>
-    <br>
-    <a href="https://docs.google.com/spreadsheets/d/1NngnPn_hc0objfICz0oPY6-uRbi557C2n7S_kGpHt3o/edit?usp=sharing" target="_blank" style="display:inline-block; padding:8px 16px; background:#333; color:white; border-radius:4px; text-decoration:none; font-weight:600;"><i class="fa-solid fa-table"></i> Try the Live POV Master Sheet</a>' 
-    data-link="https://docs.google.com/spreadsheets/d/1NngnPn_hc0objfICz0oPY6-uRbi557C2n7S_kGpHt3o/edit?usp=sharing">
-      <img src="automation1.png" alt="POV Data Master Suite">
-      <div style="padding: 15px;">
-        <h3>POV Data Master Suite</h3>
-        <p class="short-desc">An automation built to reduce manual effort by 90%. It manages 2,500+ daily links and 600,000+ records with 99% accuracy.</p>
-        <div style="margin-top:10px;">
+  <hr class="divider">
+
+  <!-- WORK SAMPLES -->
+  <section id="work-samples">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Work Samples</h2>
+
+      <div class="work-tabs">
+        <button class="work-tab active" data-panel="dashboards">Dashboards</button>
+        <button class="work-tab" data-panel="automation">Automation</button>
+      </div>
+
+      <!-- DASHBOARDS PANEL -->
+      <div class="work-panel active" id="panel-dashboards">
+        <div class="visitor-note">
+          <strong>How to test:</strong> To interact with filters, progress bars, and automation logic — open any sheet, then go to <strong>File → Make a copy</strong>. This lets you explore the full functionality safely.
+        </div>
+        <div class="cards-grid">
+
+          <div class="card"
+            data-title="Sales Performance Dashboard"
+            data-link="https://docs.google.com/spreadsheets/d/1MovhxPJV3H1NXUjzltb6n17adf32EJfSc-tmRU0PaDM/edit?usp=sharing"
+            data-img="dashboard1.png"
+            data-desc="<h4>Overview</h4>Built to transform transactional data into actionable sales insights. Automates calculation of core metrics including total revenue and order volume, with a dynamic Top 5 Products chart so users can identify best sellers at a glance.<br><br><h4>Key Features</h4><ul><li>Automated revenue and order volume calculations</li><li>Dynamic Top 5 Products analysis with real-time charting</li><li>Clean, executive-ready layout designed for quick decisions</li></ul>">
+            <img src="dashboard1.png" alt="Sales Performance Dashboard" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-chart-bar"></i></div>
+            <div class="card-body">
+              <div class="card-title">Sales Performance Dashboard</div>
+              <div class="card-desc">Revenue tracking, order volume, and top product analysis with dynamic charting.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Google Sheets</span>
+              <span class="card-tag">Charts</span>
+            </div>
+          </div>
+
+          <div class="card"
+            data-title="Expense &amp; Budget Dashboard"
+            data-link="https://docs.google.com/spreadsheets/d/1nSNbcYbQwCJFutFR66mWyMIcfystCuMwoDWOjaIURg0/edit?usp=drive_link"
+            data-img="dashboard2.png"
+            data-desc="<h4>Overview</h4>Full financial visibility for budget management. A structured raw data entry system feeds automated pivot summaries, with dual chart visualizations to compare projected vs. actual spending.<br><br><h4>Key Features</h4><ul><li>Automated pivot summaries from raw data</li><li>Projected vs. actual budget comparison charts</li><li>Designed to keep spending targets clearly visible</li></ul>">
+            <img src="dashboard2.png" alt="Budget Dashboard" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-wallet"></i></div>
+            <div class="card-body">
+              <div class="card-title">Expense &amp; Budget Dashboard</div>
+              <div class="card-desc">Automated pivot summaries with projected vs. actual spending charts for full financial visibility.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Google Sheets</span>
+              <span class="card-tag">Finance</span>
+            </div>
+          </div>
+
+          <div class="card"
+            data-title="Project Progress Dashboard"
+            data-link="https://docs.google.com/spreadsheets/d/1JEUrzUrJkFKLBfTNwqQxo3K3VhnNMDFn_RAuPQUJs8E/edit?usp=drive_link"
+            data-img="dashboard3.png"
+            data-desc="<h4>Overview</h4>Built with complex formulas to calculate Days Until Due and visualize task completion via dynamic progress bars. Organized by owner and priority to surface workflow bottlenecks at a glance.<br><br><h4>Key Features</h4><ul><li>Automated &quot;Days Until Due&quot; calculations</li><li>Visual progress bars per task and owner</li><li>Priority-based layout for clear bottleneck identification</li></ul>">
+            <img src="dashboard3.png" alt="Project Progress Dashboard" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-tasks"></i></div>
+            <div class="card-body">
+              <div class="card-title">Project Progress Dashboard</div>
+              <div class="card-desc">Dynamic progress bars and deadline tracking to manage tasks and surface bottlenecks.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Google Sheets</span>
+              <span class="card-tag">Project Mgmt</span>
+            </div>
+          </div>
+
+          <div class="card"
+            data-title="E-Commerce KPI Dashboard"
+            data-link="https://docs.google.com/spreadsheets/d/1pxr1YZaRuAz38_J2GZIuR94PNra-RP_gifeRoKs2SYw/edit?usp=drive_link"
+            data-img="dashboard4.png"
+            data-desc="<h4>Overview</h4>Built for retail data analysis with interactive filters by Month and Category. Visualizes key metrics including unit pricing and total sales across product segments for fast, drill-down exploration.<br><br><h4>Key Features</h4><ul><li>Interactive Month and Category filters</li><li>Unit pricing and sales trend visualizations</li><li>Designed for performance analysis across product lines</li></ul>">
+            <img src="dashboard4.png" alt="E-Commerce Dashboard" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-store"></i></div>
+            <div class="card-body">
+              <div class="card-title">E-Commerce KPI Dashboard</div>
+              <div class="card-desc">Interactive filters for Month and Category to analyze product and sales performance.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Google Sheets</span>
+              <span class="card-tag">E-Commerce</span>
+            </div>
+          </div>
+
+          <div class="card"
+            data-title="Executive Sales Dashboard"
+            data-link="https://docs.google.com/spreadsheets/d/1drhT1JIwlsK-8ECtpLmcoUOL_UhTuOYKppM41m75rhk/edit?usp=drive_link"
+            data-img="dashboard5.png"
+            data-desc="<h4>Overview</h4>My flagship dashboard — engineered for high-level decision making. Processes 1,000+ records with advanced filtering by region and sales rep. Five analytical charts refresh simultaneously for a seamless, interactive executive experience.<br><br><h4>Key Features</h4><ul><li>Handles 1,000+ records with no performance loss</li><li>Advanced filters: region, sales rep, time period</li><li>Five synchronized charts for multi-angle analysis</li></ul>">
+            <img src="dashboard5.png" alt="Executive Sales Dashboard" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="card-body">
+              <div class="card-title">Executive Sales Dashboard</div>
+              <div class="card-desc">1,000+ records, multi-region filtering, and five synchronized charts for executive-level analysis.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Google Sheets</span>
+              <span class="card-tag">Executive</span>
+            </div>
+          </div>
+
         </div>
       </div>
-  </div>
 
-  <div class="portfolio-card" 
-   data-full-desc='<div style="position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 20px;"><iframe src="https://www.loom.com/embed/ff47b5e16a764581a73e21d179ef3783?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"></iframe></div> 
-   
-   <h4>What it is: A 24/7 Digital Assistant for Your Brand</h4>
-   The <strong>AI Fragrance Analytics Engine</strong> acts like an intelligent assistant that never sleeps. Instead of a person needing to read every single review, this system "reads" the feedback, understands the customer’s needs, and takes action immediately. It bridges the gap between customer comments and smart business decisions.
-   <br><br>
+      <!-- AUTOMATION PANEL -->
+      <div class="work-panel" id="panel-automation">
+        <div class="cards-grid">
 
-   <h4>What it does: Reads, Reports, and Responds</h4>
-   When a customer submits a review, the system instantly handles four major tasks:
-   <ul style="margin-left: 20px; line-height: 1.6;">
-     <li><strong>Tracks Product Performance:</strong> It reads the customer’s story and automatically pulls out specific details, like how long the perfume lasted. This turns a long paragraph into a simple number that a business can use to improve their products.</li>
-     <li><strong>Safety Alerts:</strong> The system scans for urgent words like "rash" or "allergic." If it finds a concern, it immediately sends an <strong>Emergency Alert</strong> to the team so they can help the customer right away.</li>
-     <li><strong>Plans the Solution:</strong> It creates a simple "Action Plan" for the staff, explaining exactly how to handle that specific customer.</li>
-     <li><strong>Sends Instant Replies:</strong> The system doesn’t just draft a message, it actually <strong>sends a professional, friendly email</strong> directly to the customer. This ensures every person feels heard the moment they reach out.</li>
-   </ul>
-   <br>
+          <div class="card"
+            data-title="POV Data Master Suite"
+            data-link="https://docs.google.com/spreadsheets/d/1NngnPn_hc0objfICz0oPY6-uRbi557C2n7S_kGpHt3o/edit?usp=sharing"
+            data-img="automation1.png"
+            data-desc='<div style="position:relative;padding-bottom:56.25%;height:0;margin-bottom:20px"><iframe src="https://www.loom.com/embed/d34a6d2cc5d3497285d8ba26eabb01a4?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px"></iframe></div><h4>The Problem</h4>In a previous role, manually verifying video links required 8–10 hours just to process 1,000 links. I built this Google Apps Script automation to handle the entire pipeline — eventually processing 2,500+ links per day in under 60 minutes, auditing 600,000+ total records at 99% accuracy.<br><br><h4>How to Test It</h4><ol><li>Navigate to the <strong>Sample Links</strong> sheet and copy any raw URLs</li><li>Paste them into the <strong>Main</strong> sheet under the URL column</li><li>Use the <strong>POV Data Master</strong> menu to run "Fetch/Update Metadata" and "RUN STRICT AUDIT"</li></ol><br><h4>Key Features</h4><ul><li><strong>Strict Logic Gates:</strong> Multi-stage audit for duration (≥1 min) and quality (≥1080p)</li><li><strong>Master Cleanup Tool:</strong> One-click batch removal of rejected rows and duplicates</li><li><strong>90% Time Reduction:</strong> High-performance API logic reclaiming the majority of the workday</li></ul><br><a href="https://docs.google.com/spreadsheets/d/1NngnPn_hc0objfICz0oPY6-uRbi557C2n7S_kGpHt3o/edit?usp=sharing" target="_blank"><i class="fa-solid fa-table"></i> Open Live Sheet</a>'>
+            <img src="automation1.png" alt="POV Data Master" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-bolt"></i></div>
+            <div class="card-body">
+              <div class="card-title">POV Data Master Suite</div>
+              <div class="card-desc">90% reduction in processing time — 2,500+ daily links, 600K+ records audited at 99% accuracy.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Apps Script</span>
+              <span class="card-tag">API</span>
+            </div>
+          </div>
 
-   <h4>How to try it right now</h4>
-   You can trigger the AI yourself to see how it thinks:
-   <ol style="margin-left: 20px; line-height: 1.6;">
-     <li><strong>Submit a Review:</strong> Click the <strong>Google Form link</strong> inside the database. Try acting like a happy customer or a dissatisfied one to see how the AI changes its response.</li>
-     <li><strong>Watch the Database:</strong> Open the <strong>Fragrance Review Database</strong> spreadsheet. You will see your entry appear and be analyzed by the AI in just a few seconds.</li>
-     <li><strong>Receive Your Email:</strong> Check the inbox for the address you used in the form. You will see the professional response sent automatically by the engine.</li>
-   </ol>
-   <br>
+          <div class="card"
+            data-title="AI Fragrance Analytics Engine"
+            data-link="https://docs.google.com/spreadsheets/d/1xrGiurRa5Os5wol---48sRvHgJAynesdrwiFSae1FKs/edit?usp=sharing"
+            data-img="automation2.png"
+            data-desc='<div style="position:relative;padding-bottom:56.25%;height:0;margin-bottom:20px"><iframe src="https://www.loom.com/embed/ff47b5e16a764581a73e21d179ef3783?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px"></iframe></div><h4>What It Does</h4>An AI-powered 24/7 review management engine. When a customer submits a review, the system instantly performs four actions: extracts product performance data, scans for safety alerts (rash, allergic reaction), generates a staff action plan, and sends a personalized email reply — automatically.<br><br><h4>How to Try It</h4><ol><li>Click the <strong>Google Form link</strong> inside the database and submit a test review</li><li>Watch your entry appear and be analyzed in the <strong>Fragrance Review Database</strong> spreadsheet</li><li>Check the inbox you used — a professional auto-reply will arrive within seconds</li></ol><br><h4>Why It Stands Out</h4><ul><li><strong>Human tone:</strong> Trained to respond warmly and professionally, not like a bot</li><li><strong>Always online:</strong> Backup engine system ensures zero downtime</li><li><strong>Real business value:</strong> No customer concern is ever missed or delayed</li></ul><br><a href="https://docs.google.com/spreadsheets/d/1xrGiurRa5Os5wol---48sRvHgJAynesdrwiFSae1FKs/edit?usp=sharing" target="_blank"><i class="fa-solid fa-table"></i> View Live Database</a>'>
+            <img src="automation2.png" alt="AI Fragrance Engine" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-robot"></i></div>
+            <div class="card-body">
+              <div class="card-title">AI Fragrance Analytics Engine</div>
+              <div class="card-desc">Reads reviews, sends instant personalized replies, and fires safety alerts — fully automated.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">Make.com</span>
+              <span class="card-tag">AI</span>
+              <span class="card-tag">Gmail</span>
+            </div>
+          </div>
 
-   <h4>Why I am Proud of It</h4>
-   <ul style="margin-left: 20px; line-height: 1.6;">
-     <li><strong>It sounds human:</strong> I trained the AI to speak in a warm, professional tone that feels like a personal concierge, not a cold robot.</li>
-     <li><strong>It is built to stay running:</strong> Most tools stop working if they get too much traffic. I designed a "backup engine" system that automatically stays online, ensuring the business never misses a customer.</li>
-     <li><strong>Real business value:</strong> This isn’t just a tech project. It is a tool that saves businesses hours of manual work and ensures that no customer concern is ever ignored.</li>
-   </ul>
-   <br>
-   <a href="https://docs.google.com/spreadsheets/d/1xrGiurRa5Os5wol---48sRvHgJAynesdrwiFSae1FKs/edit?usp=sharing" target="_blank" style="display:inline-block; padding:8px 16px; background:#333; color:white; border-radius:4px; text-decoration:none; font-weight:600;"><i class="fa-solid fa-table"></i> View the Live Database</a>' 
-   data-link="https://docs.google.com/spreadsheets/d/1xrGiurRa5Os5wol---48sRvHgJAynesdrwiFSae1FKs/edit?usp=sharing">
-    <img src="automation2.png" alt="AI Fragrance Analytics Engine">
-    <div style="padding: 15px;">
-      <h3>AI Fragrance Analytics Engine</h3>
-      <p class="short-desc">A smart, reliable system that analyzes reviews, tracks product performance, and automatically responds to customers in real time.</p>
-      <div style="margin-top:10px;">
+          <div class="card"
+            data-title="AI-Driven Lead Qualification"
+            data-link=""
+            data-img="automation4.png"
+            data-desc="<h4>The Problem</h4>Manual vetting of freelance inquiries cuts into deep-work hours. I built this n8n pipeline as a 'Digital Gatekeeper' to qualify leads and respond immediately with a personalized, honest email in my voice.<br><br><h4>How It Works</h4><ul><li><strong>AI Scoring:</strong> Gemini AI scores each inquiry as Hot / Warm / Cold based on budget, timeline, and problem clarity</li><li><strong>Custom JS Node:</strong> A 'Signature Force' JavaScript node ensures clean HTML formatting in the final email</li><li><strong>Honest Voice:</strong> Drafts a first-person email that sounds like me — not a template</li></ul><br><h4>Key Features</h4><ul><li>Ready-to-send Gmail drafts with a personal, professional tone</li><li>Internal alert with AI reasoning so I know exactly who to prioritize</li><li>Zero maintenance — runs entirely on n8n connecting Google Forms, Gemini, and Gmail</li></ul>">
+            <img src="automation4.png" alt="Lead Qualification" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-filter"></i></div>
+            <div class="card-body">
+              <div class="card-title">AI-Driven Lead Qualification</div>
+              <div class="card-desc">Scores inbound inquiries with Gemini AI and auto-drafts personalized email responses via n8n.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">n8n</span>
+              <span class="card-tag">Gemini AI</span>
+            </div>
+          </div>
+
+          <div class="card"
+            data-title="Logistics Report Automation"
+            data-link=""
+            data-img="automation3.png"
+            data-desc="<h4>The Problem</h4>Logistics data from Vektor TMS arrives as raw CSV files requiring hours of manual cleaning, transformation, and reporting every week. I built a fully automated pipeline to handle it end-to-end.<br><br><h4>Pipeline Flow</h4><ul><li><strong>Ingestion:</strong> Automated trigger reads raw CSV files and parses them into structured objects</li><li><strong>Transformation:</strong> Cleans and standardizes logistics metrics, injected into a master Google Sheet 'Source of Truth'</li><li><strong>Reporting:</strong> Generates a professional HTML email summary with KPIs, delivered every Monday morning</li></ul><br><h4>Key Features</h4><ul><li>Scheduled delivery — reports ready every Monday, without manual effort</li><li>Eliminates copy-paste errors inherent in manual dataset handling</li><li>Complete end-to-end solution from raw file ingestion to executive reporting</li></ul>">
+            <img src="automation3.png" alt="Logistics Automation" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-truck"></i></div>
+            <div class="card-body">
+              <div class="card-title">Logistics Report Automation</div>
+              <div class="card-desc">Raw CSV → structured Google Sheet → weekly HTML email summary. Fully automated, zero manual effort.</div>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">n8n</span>
+              <span class="card-tag">Google Sheets</span>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
-  </div>
+  </section>
 
-  </div>
-<div style="height: 60px;"></div>
-
-  <!-- MODAL OVERLAY -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-card" id="modalCard">
-      <button class="close-btn">&times;</button>
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">&times;</button>
       <img src="" alt="" id="modalImg">
       <h3 id="modalTitle"></h3>
-      <p class="full-desc" id="modalDesc"></p>
+      <div id="modalDesc"></div>
     </div>
   </div>
 
+  <hr class="divider">
+
   <!-- CONTACT -->
-  <section id="contact" class="contact-section">
-    <div class="contact-container">
-      
-      <div class="contact-info">
-        <h2>Let's connect</h2>
-        <p>I am always open to discussing new projects, workflow optimizations, or data challenges. Send me a message and I will get back to you within 24 hours.</p>
-        
-        <div style="margin-top: 30px;">
-          <p style="font-size: 16px; font-weight: 600;">Email directly:</p>
-          <a href="mailto:sixto.adrian12@gmail.com">sixto.adrian12@gmail.com</a>
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <p class="section-label">Get In Touch</p>
+          <h2>Let's work<br>together.</h2>
+          <p>Open to remote data, operations, and automation roles — as well as freelance projects. I respond within 24 hours.</p>
+          <div class="contact-direct">
+            <p>Email directly</p>
+            <a href="mailto:sixto.adrian12@gmail.com">sixto.adrian12@gmail.com</a>
+          </div>
         </div>
+
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvgerjzz" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or role..." required></textarea>
+          </div>
+          <button type="submit" id="contact-form-button" class="send-btn">Send Message</button>
+          <div id="contact-form-status" class="form-alert"></div>
+        </form>
       </div>
-
-      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvgerjzz" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="How can I help you?" required></textarea>
-        </div>
-
-        <button type="submit" id="contact-form-button" class="send-btn">Send Message</button>
-        <div id="contact-form-status" class="form-alert"></div>
-      </form>
-
     </div>
   </section>
 
-  </main>
+</main>
 
-  <script src="tooltips.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // --- 1. PORTFOLIO MODAL SYSTEM ---
-      const cards = document.querySelectorAll('.portfolio-card');
-      const modalOverlay = document.getElementById('modalOverlay');
-      const modalImg = document.getElementById('modalImg');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalDesc = document.getElementById('modalDesc');
-      const closeBtn = document.querySelector('.close-btn');
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Adrian Sixto</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank">LinkedIn</a>
+      <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank">Upwork</a>
+      <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank">OnlineJobs.ph</a>
+      <a href="mailto:sixto.adrian12@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
 
-      if (cards.length > 0 && modalOverlay) {
-        cards.forEach(card => {
-          card.addEventListener('click', function(e) {
-            e.preventDefault();
-            const img = this.querySelector('img').src;
-            const titleText = this.querySelector('h3').textContent;
-            const fullDesc = this.getAttribute('data-full-desc');
-            const sheetLink = this.getAttribute('data-link');
-
-            modalImg.src = img;
-            modalDesc.innerHTML = fullDesc;
-
-            if (sheetLink) {
-              modalTitle.innerHTML = `<a href="${sheetLink}" target="_blank" class="modal-link">${titleText} 🔗</a>`;
-            } else {
-              modalTitle.textContent = titleText;
-            }
-
-            modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-          });
-        });
-
-        function closeModal() {
-          modalOverlay.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-
-        if (closeBtn) closeBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-          if (e.target === modalOverlay) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeModal();
-        });
-      }
-
-      // --- 2. CONTACT FORM SYSTEM ---
-      const form = document.getElementById("contact-form");
-      const status = document.getElementById("contact-form-status");
-      const button = document.getElementById("contact-form-button");
-
-      if (form) {
-        form.onsubmit = async function(event) {
-          event.preventDefault();
-          const data = new FormData(event.target);
-          
-          // UI Feedback: Start sending
-          button.disabled = true;
-          button.innerText = "Sending...";
-          status.style.display = "none"; 
-
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          }).then(response => {
-            button.disabled = false;
-            button.innerText = "Send Message";
-
-            if (response.ok) {
-              status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent, thank you for reaching out!';
-              status.className = "form-alert success";
-              status.style.display = "block"; // Force it to show
-              form.reset();
-            } else {
-              status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Oops! Something went wrong.';
-              status.className = "form-alert error";
-              status.style.display = "block";
-            }
-          }).catch(error => {
-            button.disabled = false;
-            button.innerText = "Send Message";
-            status.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error: Check your connection.';
-            status.className = "form-alert error";
-            status.style.display = "block";
-          });
-        };
-      }
+<script>
+  // --- TABS ---
+  document.querySelectorAll('.work-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
     });
-  </script>
-  </body>
-  </html>
-  
+  });
+
+  // --- MODAL ---
+  const overlay   = document.getElementById('modalOverlay');
+  const modalImg  = document.getElementById('modalImg');
+  const modalTitle= document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const closeBtn  = document.getElementById('modalClose');
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const img   = card.dataset.img;
+      const title = card.dataset.title;
+      const link  = card.dataset.link;
+      const desc  = card.dataset.desc;
+
+      modalImg.src = img;
+      modalImg.alt = title;
+      modalDesc.innerHTML = desc;
+
+      if (link) {
+        modalTitle.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7em;opacity:0.6"></i></a>`;
+      } else {
+        modalTitle.textContent = title;
+      }
+
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // --- CONTACT FORM ---
+  const form   = document.getElementById('contact-form');
+  const status = document.getElementById('contact-form-status');
+  const button = document.getElementById('contact-form-button');
+
+  if (form) {
+    form.onsubmit = async function(e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      status.style.display = 'none';
+
+      fetch(e.target.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(res => {
+        button.disabled = false;
+        button.textContent = 'Send Message';
+        if (res.ok) {
+          status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent — I\'ll be in touch within 24 hours.';
+          status.className = 'form-alert success';
+          form.reset();
+        } else {
+          status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Something went wrong. Please try emailing me directly.';
+          status.className = 'form-alert error';
+        }
+      }).catch(() => {
+        button.disabled = false;
+        button.textContent = 'Send Message';
+        status.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Connection error. Please check your network.';
+        status.className = 'form-alert error';
+      });
+    };
+  }
+</script>
+
+</body>
+</html>
