@@ -74,6 +74,7 @@
       font-size: 1.15rem;
       letter-spacing: 0.01em;
       color: var(--text);
+      flex-shrink: 0;
     }
     .nav-links {
       display: flex;
@@ -92,6 +93,13 @@
       transition: background var(--transition), color var(--transition);
     }
     .nav-links a:hover { background: var(--border); color: var(--text); }
+
+    /* Brand-color hover effects */
+    .nav-links a.nav-linkedin:hover  { background: #0A66C2; color: #fff; }
+    .nav-links a.nav-whatsapp:hover  { background: #25D366; color: #fff; }
+    .nav-links a.nav-upwork:hover    { background: #14A800; color: #fff; }
+    .nav-links a.nav-onlinejobs:hover { background: #1d1ae8; color: #fff; }
+
     .nav-links a.cta {
       background: var(--text);
       color: var(--bg);
@@ -107,7 +115,7 @@
       align-items: center;
       gap: 72px;
     }
-    .hero-text { flex: 1; }
+    .hero-text { flex: 1; min-width: 0; }
     .hero-eyebrow {
       font-size: 0.8rem;
       font-weight: 600;
@@ -312,16 +320,12 @@
       font-size: 1.35rem;
       flex-shrink: 0;
     }
-    /* FA fallback icons stay accent-colored */
     .skill-icon .fa-solid,
     .skill-icon .fa-regular { color: var(--accent); font-size: 1rem; }
-    /* Devicon brand logos render in full color */
     .skill-icon [class^="devicon-"],
     .skill-icon [class*=" devicon-"] { font-size: 1.5rem; }
-    /* Custom color overrides for specific logos */
     .skill-icon .devicon-googlecloud-plain { color: #4285F4; }
     .skill-icon .devicon-mysql-plain { color: #00758F; }
-    /* SVG-based brand logo images */
     .skill-icon img { width: 24px; height: 24px; object-fit: contain; }
     .skill-name { font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; }
     .skill-desc { font-size: 0.79rem; color: var(--muted); line-height: 1.5; }
@@ -593,23 +597,69 @@
     /* ── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
       .container { padding: 0 24px; }
-      .nav-inner { padding: 0 24px; }
+      .nav-inner { padding: 0 16px; height: 60px; }
       .footer-inner { padding: 0 24px; }
-      .hero { flex-direction: column-reverse; padding: 60px 0 60px; gap: 40px; }
-      .hero-photo { width: 100%; }
-      .hero-photo img, .hero-photo-placeholder { width: 100%; height: 280px; }
+
+      /* Hero: photo shrinks and stays side-by-side */
+      .hero {
+        flex-direction: row;
+        padding: 48px 24px 48px;
+        gap: 28px;
+        align-items: flex-start;
+      }
+      .hero-text { flex: 1; min-width: 0; }
+      .hero-photo {
+        flex-shrink: 0;
+        width: 120px;
+      }
+      .hero-photo img {
+        width: 120px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .hero-photo-placeholder {
+        width: 120px;
+        height: 150px;
+        border-radius: 10px;
+      }
+      .hero h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+      .hero-desc { font-size: 0.92rem; max-width: 100%; }
+
       .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
       .exp-item { grid-template-columns: 1fr; gap: 4px; }
       .exp-dates { text-align: left; }
       .skills-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+
+      /* Nav: hide text labels, show icons only */
+      .nav-links a span { display: none; }
+      .nav-links a { padding: 6px 10px; }
+      .nav-links a i { font-size: 1rem; }
     }
 
     @media (max-width: 600px) {
-      .nav-links a span { display: none; }
+      .nav-inner { padding: 0 12px; }
+      .container { padding: 0 16px; }
+      .hero { gap: 16px; padding: 36px 0 36px; }
+      .hero-photo { width: 100px; }
+      .hero-photo img {
+        width: 100px;
+        height: 124px;
+      }
+      .hero h1 { font-size: clamp(1.55rem, 7vw, 2rem); }
+      .hero-metric { flex-direction: column; gap: 2px; }
+      .hero-cta { gap: 8px; }
+      .btn { padding: 9px 16px; font-size: 0.82rem; }
       .capabilities-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
+      .work-tabs { width: 100%; }
+      .work-tab { flex: 1; text-align: center; }
+      .modal-card { padding: 24px 20px; }
+      section { padding: 56px 0; }
     }
 
     /* ── FADE-IN ANIMATION ──────────────────── */
@@ -632,13 +682,16 @@
   <div class="nav-inner">
     <span class="nav-logo">Adrian Sixto</span>
     <div class="nav-links">
-      <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer">
+       <a href="https://wa.me/639976038814?text=Hi%20Adrian%2C%20I%27d%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="nav-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+      </a>
+      <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer" class="nav-linkedin">
         <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
       </a>
-      <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank" rel="noopener noreferrer" class="nav-upwork">
         <i class="fa-brands fa-upwork"></i><span>Upwork</span>
       </a>
-      <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer" class="nav-onlinejobs">
         <i class="fa-solid fa-briefcase"></i><span>OnlineJobs.ph</span>
       </a>
       <a href="mailto:sixto.adrian12@gmail.com" class="cta">
@@ -659,7 +712,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://drive.google.com/file/d/1HKqHrc3bqdoZdoubIDTebFq0R-x9k-SV/view?usp=sharing" target="_blank" class="btn btn-primary">
+        <a href="https://drive.google.com/file/d/1dtqBWUH1y92_FhQrmBlPYk7aeef1swD8/view?usp=sharing" target="_blank" class="btn btn-primary">
           <i class="fa-solid fa-file-lines"></i> View Resume
         </a>
         <a href="#work-samples" class="btn btn-outline">
@@ -709,7 +762,7 @@
         <div class="cap-cell">
           <div class="cap-icon"><i class="fa-solid fa-robot"></i></div>
           <h3>AI-Enhanced Pipelines</h3>
-          <p>Integrating LLMs (Claude, Gemini, ChatGPT) into workflows for intelligent triage, analysis, and response automation.</p>
+          <p>Integrating LLMs (Gemini, Claude) into workflows for intelligent triage, analysis, and response automation.</p>
         </div>
       </div>
     </div>
@@ -727,7 +780,7 @@
         <div class="exp-item">
           <div>
             <div class="exp-company">Odyssey</div>
-            <div class="exp-location">San Francisco, California · Remote</div>
+            <div class="exp-location">San Francisco, Bay Area · Remote</div>
           </div>
           <div>
             <div class="exp-role">Data Specialist</div>
@@ -876,10 +929,9 @@
        <div class="skill-item">
           <div class="skill-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#4285F4"/>
-              <path d="M12 12L2 7V17L12 22L22 17V7L12 12Z" fill="#34A853"/>
-              <path d="M12 12H22V17L12 22V12Z" fill="#EA4335"/>
-              <path d="M2 7L12 12V22L2 17V7Z" fill="#FBBC04"/>
+              <path d="M8.5 5.5L2 17L5 22L11.5 10.5L8.5 5.5Z" fill="#0066DA"/>
+              <path d="M22 17L19 22H5L8.5 16H22V17Z" fill="#00AC47"/>
+              <path d="M15.5 5.5L8.5 5.5L15.5 17L22 17L15.5 5.5Z" fill="#FFBA00"/>
             </svg>
           </div>
           <div>
@@ -921,21 +973,21 @@
           </div>
           <div>
             <div class="skill-name">AI / LLM Tools</div>
-            <div class="skill-desc">Claude, Gemini, and ChatGPT — for intelligent automation, prompt engineering, and AI-powered pipelines.</div>
+            <div class="skill-desc">Gemini, ChatGPT, and Claude — for intelligent automation, prompt engineering, and AI-powered pipelines.</div>
           </div>
         </div>
 
         <div class="skill-item">
           <div class="skill-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.5 5.5L2 17L5 22L11.5 10.5L8.5 5.5Z" fill="#0066DA"/>
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#0066DA"/>
               <path d="M22 17L19 22H5L8.5 16H22V17Z" fill="#00AC47"/>
               <path d="M15.5 5.5L8.5 5.5L15.5 17L22 17L15.5 5.5Z" fill="#FFBA00"/>
             </svg>
           </div>
           <div>
             <div class="skill-name">Google Drive &amp; Workspace</div>
-            <div class="skill-desc">Document management, trigger,based automation via Drive API, and cross-team collaboration tools.</div>
+            <div class="skill-desc">Document management, trigger-based automation via Drive API, and cross-team collaboration tools.</div>
           </div>
         </div>
 
@@ -1212,6 +1264,7 @@
   <div class="footer-inner">
     <span class="footer-name">Adrian Sixto</span>
     <div class="footer-links">
+      <a href="https://wa.me/639976038814?text=Hi%20Adrian%2C%20I%27d%20like%20to%20connect!" target="_blank">WhatsApp</a>
       <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank">LinkedIn</a>
       <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank">Upwork</a>
       <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank">OnlineJobs.ph</a>
