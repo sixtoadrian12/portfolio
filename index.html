@@ -169,7 +169,7 @@
       border: 1px solid var(--border);
       border-radius: 30px;
       box-shadow: var(--shadow-lg);
-      padding: 34px 36px;
+      padding: 40px 42px;
       min-height: auto;
     }
     .hero-text {
@@ -517,6 +517,10 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       align-items: stretch;
+      grid-auto-rows: 1fr;
+    }
+    .cards-grid--automation {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .card {
       background: var(--surface);
@@ -537,18 +541,22 @@
       width: 100%;
       height: 200px;
       object-fit: contain;
+      object-position: center top;
       background: var(--surface);
-      padding: 8px;
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid var(--border);
     }
     .card-img-placeholder {
       width: 100%;
       height: 200px;
       background: var(--bg);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       color: var(--muted);
       font-size: 2rem;
+      padding: 22px 12px 12px;
+      border-bottom: 1px solid var(--border);
     }
     .card-body { padding: 18px 20px 22px; flex: 1; }
     .card-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 6px; line-height: 1.35; }
@@ -597,14 +605,14 @@
       background: rgba(26, 24, 21, 0.6);
       backdrop-filter: blur(6px);
       z-index: 1000;
-      padding: 24px;
+      padding: 24px 24px 32px;
       overflow-y: auto;
     }
-    .modal-overlay.active { display: flex; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
     .modal-shell {
       width: 100%;
       max-width: 880px;
-      margin: 32px 0;
+      margin: 0;
       border-radius: 18px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.2);
@@ -619,26 +627,6 @@
       background: var(--bg-soft);
       border-bottom: 1px solid var(--border);
     }
-    .modal-windowbar-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-    .modal-window-dots {
-      display: inline-flex;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .modal-window-dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #D1CBC1;
-    }
-    .modal-window-dots span:nth-child(1) { background: #EE6A5F; }
-    .modal-window-dots span:nth-child(2) { background: #F5BD4F; }
-    .modal-window-dots span:nth-child(3) { background: #61C554; }
     .modal-window-label {
       font-size: 0.78rem;
       font-weight: 700;
@@ -684,13 +672,14 @@
       padding: 14px;
       min-height: 260px;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
     #modalImg {
       width: 100%;
       max-height: 360px;
       object-fit: contain;
+      object-position: center top;
       border-radius: 10px;
       background: var(--surface);
       padding: 8px;
@@ -705,9 +694,12 @@
     .modal-visual-placeholder.is-visible {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
       gap: 12px;
+      width: 100%;
+      min-height: 220px;
+      text-align: left;
     }
     .modal-visual-placeholder i {
       font-size: 2rem;
@@ -865,7 +857,7 @@
       /* Hero: photo shrinks and stays side-by-side */
       .hero {
         grid-template-columns: minmax(0, 1fr) 220px;
-        padding: 28px 24px;
+        padding: 32px 28px;
         gap: 18px;
         align-items: start;
       }
@@ -888,6 +880,7 @@
       .exp-dates { text-align: left; }
       .skills-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid--automation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
       .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -907,7 +900,7 @@
       .hero {
         grid-template-columns: minmax(0, 1fr) 120px;
         gap: 16px;
-        padding: 22px 18px;
+        padding: 26px 22px;
         align-items: start;
       }
       .hero { border-radius: 24px; }
@@ -935,9 +928,11 @@
       .exp-item { padding: 22px 18px; }
       .capabilities-grid { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
+      .cards-grid--automation { grid-template-columns: 1fr; }
       .work-tabs { width: 100%; }
       .work-tab { flex: 1; text-align: center; }
-      .modal-shell { margin: 20px 0; }
+      .modal-overlay { padding: 18px 16px 24px; }
+      .modal-shell { margin: 0; }
       .modal-windowbar { padding: 10px 12px; }
       .modal-card { padding: 24px 20px; }
       section { padding: 56px 0; }
@@ -998,7 +993,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="https://drive.google.com/file/d/1dtqBWUH1y92_FhQrmBlPYk7aeef1swD8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="https://drive.google.com/file/d/1tB-zpjC6rEctEvNkAAW94oD0Cumam2Vi/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           <i class="fa-solid fa-file-lines"></i> View Resume
         </a>
         <a href="#work-samples" class="btn btn-outline">
@@ -1335,13 +1330,13 @@
       <h2 class="section-title">Work Samples</h2>
 
       <div class="work-tabs">
-        <button class="work-tab active" data-panel="dashboards">Dashboards</button>
+        <button class="work-tab active" data-panel="dashboard">Dashboard</button>
         <button class="work-tab" data-panel="automation">Automation</button>
-        <button class="work-tab" data-panel="webapps">Web Apps</button>
+        <button class="work-tab" data-panel="webapp">Web App</button>
       </div>
 
       <!-- DASHBOARDS PANEL -->
-      <div class="work-panel active" id="panel-dashboards">
+      <div class="work-panel active" id="panel-dashboard">
         <div class="visitor-note">
           <strong>How to test:</strong> To interact with filters, progress bars, and automation logic — open any sheet, then go to <strong>File → Make a copy</strong>. This lets you explore the full functionality safely.
         </div>
@@ -1437,7 +1432,7 @@
 
       <!-- AUTOMATION PANEL -->
       <div class="work-panel" id="panel-automation">
-        <div class="cards-grid">
+        <div class="cards-grid cards-grid--automation">
 
           <div class="card"
             data-title="POV Data Master Suite"
@@ -1511,19 +1506,19 @@
         </div>
       </div>
 
-      <!-- WEB APPS PANEL -->
-      <div class="work-panel" id="panel-webapps">
+      <!-- WEB APP PANEL -->
+      <div class="work-panel" id="panel-webapp">
         <p class="panel-intro">Custom web builds for real business workflows, combining clean frontend work with practical booking flows, admin tooling, and backend-supported operations logic.</p>
         <div class="cards-grid">
 
           <div class="card"
             data-title="Rentara"
-            data-link=""
-            data-img=""
+            data-link="https://rentarailigan.netlify.app/"
+            data-img="rentarapreview-resized.png"
             data-preview-label="Rentara booking platform preview"
-            data-desc="<h4>Overview</h4>Rentara is a rental booking website I built for a chair-and-table rental business in Iligan City. I developed the frontend using HTML, CSS, and JavaScript, then used Supabase for backend services including database management, authentication, file storage, and date-based booking availability.<br><br><h4>Key Features</h4><ul><li>Customers can browse rental items and check availability by date</li><li>Booking flow includes payment proof upload and valid ID verification</li><li>Internal admin dashboard for booking management, inventory, and calendar availability</li></ul><br><h4>Stack</h4><ul><li>Frontend: HTML5, CSS3, JavaScript</li><li>Backend / BaaS: Supabase</li><li>Database: PostgreSQL</li><li>Authentication &amp; File Storage: Supabase Auth, Supabase Storage</li><li>Deployment &amp; Development: Netlify, OpenAI Codex</li></ul>">
-            <img src="" alt="Rentara preview" class="card-img" style="display:none">
-            <div class="card-img-placeholder"><i class="fa-solid fa-laptop-code"></i></div>
+            data-desc="<h4>Overview</h4>Rentara is a rental booking website I built for a chair-and-table rental business in Iligan City. I developed the frontend using HTML, CSS, and JavaScript, then used Supabase for backend services including database management, authentication, file storage, and date-based booking availability.<br><br><h4>Key Features</h4><ul><li>Customers can browse rental items and check availability by date</li><li>Booking flow includes payment proof upload and valid ID verification</li><li>Internal admin dashboard for booking management, inventory, and calendar availability</li></ul><br><h4>Stack</h4><ul><li>Frontend: HTML5, CSS3, JavaScript</li><li>Backend / BaaS: Supabase</li><li>Database: PostgreSQL</li><li>Authentication &amp; File Storage: Supabase Auth, Supabase Storage</li><li>Deployment &amp; Development: Netlify, OpenAI Codex</li></ul><a href='https://rentarailigan.netlify.app/' target='_blank' rel='noopener noreferrer'><i class='fa-solid fa-arrow-up-right-from-square'></i> Visit Live Site</a>">
+            <img src="rentarapreview-resized.png" alt="Rentara preview" class="card-img" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="card-img-placeholder" style="display:none"><i class="fa-solid fa-laptop-code"></i></div>
             <div class="card-body">
               <div class="card-title">Rentara</div>
               <div class="card-desc">Rental booking web app with date-based availability, customer uploads, and an internal admin dashboard.</div>
@@ -1546,14 +1541,7 @@
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-windowbar">
-        <div class="modal-windowbar-left">
-          <div class="modal-window-dots" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="modal-window-label" id="modalWindowLabel">Sample window</div>
-        </div>
+        <div class="modal-window-label" id="modalWindowLabel">Sample window</div>
         <button class="modal-close" id="modalClose" aria-label="Close sample window">&times;</button>
       </div>
       <div class="modal-card">
@@ -1668,7 +1656,30 @@
   const modalWindowLabel = document.getElementById('modalWindowLabel');
   const modalVisualPlaceholder = document.getElementById('modalVisualPlaceholder');
   const modalPreviewLabel = document.getElementById('modalPreviewLabel');
+  const modalContent = document.querySelector('.modal-content');
+  const modalVisual = document.querySelector('.modal-visual');
   const closeBtn  = document.getElementById('modalClose');
+
+  function syncModalVisualAlignment() {
+    modalVisual.style.marginTop = '';
+
+    if (!overlay.classList.contains('active') || window.innerWidth <= 900) {
+      return;
+    }
+
+    const iframe = modalDesc.querySelector('iframe');
+    const mediaBlock = iframe ? iframe.parentElement : null;
+
+    if (!mediaBlock) {
+      return;
+    }
+
+    const contentTop = modalContent.getBoundingClientRect().top;
+    const mediaTop = mediaBlock.getBoundingClientRect().top;
+    const offset = Math.max(0, Math.round(mediaTop - contentTop));
+
+    modalVisual.style.marginTop = `${offset}px`;
+  }
 
   function openCard(card) {
       const img   = card.dataset.img;
@@ -1706,7 +1717,9 @@
       }
 
       overlay.classList.add('active');
+      overlay.scrollTop = 0;
       document.body.style.overflow = 'hidden';
+      requestAnimationFrame(syncModalVisualAlignment);
   }
 
   document.querySelectorAll('.card').forEach(card => {
@@ -1727,11 +1740,13 @@
   function closeModal() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    modalVisual.style.marginTop = '';
   }
 
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  window.addEventListener('resize', syncModalVisualAlignment);
 
   // --- CONTACT FORM ---
   const form   = document.getElementById('contact-form');
