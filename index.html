@@ -37,6 +37,8 @@
       --muted:    #7A746B;
       --accent:   #2B5CE6;
       --accent-h: #1A40C2;
+      --success:  #1F8A4C;
+      --success-bg: #EAF7EE;
       --shadow:   0 16px 38px rgba(34, 29, 21, 0.08);
       --shadow-lg: 0 24px 56px rgba(34, 29, 21, 0.12);
       --serif:    'DM Serif Display', Georgia, serif;
@@ -55,6 +57,8 @@
       --muted: #A9AFB8;
       --accent: #7BA2FF;
       --accent-h: #98B6FF;
+      --success: #6ED99A;
+      --success-bg: #173324;
       --shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
       --shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.36);
     }
@@ -338,10 +342,11 @@
       left: 18px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
+      background: var(--success-bg);
+      border: 1px solid color-mix(in srgb, var(--success) 42%, var(--border));
+      color: var(--success);
       font-size: 0.68rem;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
@@ -847,52 +852,146 @@
     .contact-direct p { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
     .contact-direct a { font-size: 0.9rem; color: var(--accent); }
     .contact-direct a:hover { color: var(--accent-h); }
+    .contact-inquiry-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      background: var(--text);
+      color: var(--bg) !important;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+    .contact-inquiry-link:hover { background: var(--accent); color: #fff !important; }
 
-    .contact-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; }
-    .form-group input,
-    .form-group textarea {
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
       background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 24px rgba(26, 24, 21, 0.04);
+    }
+    .contact-form h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .contact-form-intro {
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 11px 14px;
+      padding: 12px 14px;
       font-family: var(--sans);
       font-size: 0.9rem;
       color: var(--text);
-      transition: border-color var(--transition);
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
       outline: none;
-      resize: none;
+      resize: vertical;
     }
     .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+      background: var(--surface);
+    }
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #B5B0A8; }
-
+    .form-group textarea::placeholder { color: color-mix(in srgb, var(--muted) 62%, transparent); }
     .send-btn {
       align-self: flex-start;
       background: var(--accent);
       color: #fff;
       border: none;
-      padding: 12px 28px;
+      padding: 12px 22px;
       border-radius: var(--radius);
       font-family: var(--sans);
       font-size: 0.875rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: background var(--transition);
+      transition: background var(--transition), transform var(--transition);
     }
-    .send-btn:hover { background: var(--accent-h); }
-
+    .send-btn:hover {
+      background: var(--accent-h);
+      transform: translateY(-1px);
+    }
+    .send-btn:disabled {
+      cursor: wait;
+      opacity: 0.72;
+      transform: none;
+    }
     .form-alert {
-      padding: 12px 16px;
+      padding: 12px 14px;
       border-radius: var(--radius);
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.5;
       display: none;
     }
-    .form-alert.success { display: block; background: #EEF7EE; color: #1a6b1a; border: 1px solid #BEE0BE; }
-    .form-alert.error   { display: block; background: #FFF0F0; color: #9B1C1C; border: 1px solid #FCCACA; }
+    .form-alert.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid color-mix(in srgb, var(--success) 40%, var(--border));
+    }
+    .form-alert.error {
+      display: block;
+      background: #FFF0F0;
+      color: #9B1C1C;
+      border: 1px solid #FCCACA;
+    }
+
+    .inquiry-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 10px 24px rgba(26, 24, 21, 0.04);
+    }
+    .inquiry-panel h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .inquiry-panel p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .inquiry-panel .btn { width: fit-content; }
+    .project-inquiry-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .project-inquiry-link:hover { color: var(--accent-h); }
 
     /* ── FOOTER ─────────────────────────────── */
     footer {
@@ -1042,8 +1141,8 @@
         <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer" class="nav-onlinejobs">
           <i class="fa-solid fa-briefcase"></i><span>OnlineJobs.ph</span>
         </a>
-        <a href="mailto:sixto.adrian12@gmail.com" class="cta">
-          <i class="fa-solid fa-envelope"></i><span>Email Me</span>
+        <a href="https://forms.gle/REPLACE_WITH_YOUR_FORM_LINK" target="_blank" rel="noopener noreferrer" class="cta nav-inquiry">
+          <i class="fa-solid fa-clipboard-list"></i><span>Project Inquiry</span>
         </a>
       </div>
     </div>
@@ -1155,7 +1254,7 @@
             <div class="experience-banner-title">Independent Development &amp; Consulting</div>
             <div class="experience-banner-dates">Apr 2026 – Present</div>
           </div>
-          <p>I’m currently building Rentara, shipping automation work, and taking on selective consulting projects around dashboards, workflow cleanup, and lightweight web tools. This is where I turn practical ideas into live systems people can actually use.</p>
+          <p>I work independently on automation, dashboard, and lightweight web tool projects for small teams and business owners who need clearer processes, cleaner data, and more reliable day-to-day systems. This work includes scoping problems, designing practical workflows, and turning ideas into usable tools.</p>
         </div>
 
         <div class="exp-item">
@@ -1249,7 +1348,7 @@
           </div>
           <div>
             <div class="exp-role">Undergraduate Degree</div>
-            <p class="exp-bullet">Completed a sociology degree with honors. The academic background helps me look at workflows, systems, and people-driven processes with a practical eye.</p>
+            <p class="exp-bullet">Graduated with honors, building a strong foundation in research, systems thinking, and understanding how people and organizations operate. This background supports the way I approach workflow design, operations, and practical business tooling.</p>
           </div>
           <div class="exp-dates">Graduated 2024</div>
         </div>
@@ -1702,29 +1801,47 @@
         <div class="contact-info">
           <p class="section-label">Get In Touch</p>
           <h2>Let's work<br>together.</h2>
-          <p>Open to remote data, operations, automation, and web support roles, as well as freelance dashboard or workflow projects. I respond within 24 hours.</p>
+          <p>Open to remote data, operations, automation, and web support roles, as well as freelance dashboard or workflow projects. Send a quick message for general questions, role opportunities, or simple reach-outs. If you already have a workflow, report, dashboard, or system you want help with, the project inquiry form gives me the context I need to understand the problem properly.</p>
           <div class="contact-direct">
-            <p>Email directly</p>
-            <a href="mailto:sixto.adrian12@gmail.com">sixto.adrian12@gmail.com</a>
+            <p>Best for project scoping</p>
+            <a href="https://forms.gle/REPLACE_WITH_YOUR_FORM_LINK" target="_blank" rel="noopener noreferrer" class="contact-inquiry-link">
+              <i class="fa-solid fa-clipboard-list"></i> Project Inquiry Form
+            </a>
           </div>
         </div>
 
-        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvgerjzz" method="POST">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
+        <div class="contact-actions">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvgerjzz" method="POST">
+            <h3>Send a quick message.</h3>
+            <p class="contact-form-intro">For quick questions, general reach-outs, or opportunities that do not need a full project brief yet.</p>
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me what you have in mind." required></textarea>
+            </div>
+
+            <button type="submit" class="send-btn" id="contact-form-button">Send Message</button>
+            <p id="contact-form-status" class="form-alert" aria-live="polite"></p>
+          </form>
+
+          <div class="inquiry-panel">
+            <h3>Have a specific project in mind?</h3>
+            <p>Fill out the project inquiry form if you want to explain the workflow, dashboard, automation, or business process you need help with.</p>
+            <a href="https://forms.gle/REPLACE_WITH_YOUR_FORM_LINK" target="_blank" rel="noopener noreferrer" class="project-inquiry-link">
+              Fill out the project inquiry form <i class="fa-solid fa-arrow-right"></i>
+            </a>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or role..." required></textarea>
-          </div>
-          <button type="submit" id="contact-form-button" class="send-btn">Send Message</button>
-          <div id="contact-form-status" class="form-alert"></div>
-        </form>
+        </div>
       </div>
     </div>
   </section>
@@ -1739,7 +1856,7 @@
       <a href="https://www.linkedin.com/in/adrian-sixto-986909337/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="https://www.upwork.com/freelancers/~01c7eb13a0ecb349e9?mp_source=share" target="_blank" rel="noopener noreferrer">Upwork</a>
       <a href="https://www.onlinejobs.ph/jobseekers/info/3700732" target="_blank" rel="noopener noreferrer">OnlineJobs.ph</a>
-      <a href="mailto:sixto.adrian12@gmail.com">Email</a>
+      <a href="https://forms.gle/REPLACE_WITH_YOUR_FORM_LINK" target="_blank" rel="noopener noreferrer">Project Inquiry</a>
     </div>
   </div>
 </footer>
@@ -1882,41 +1999,48 @@
   window.addEventListener('resize', syncModalVisualAlignment);
 
   // --- CONTACT FORM ---
-  const form   = document.getElementById('contact-form');
+  const form = document.getElementById('contact-form');
   const status = document.getElementById('contact-form-status');
   const button = document.getElementById('contact-form-button');
 
-  if (form) {
-    form.onsubmit = async function(e) {
+  if (form && status && button) {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      const data = new FormData(e.target);
+      const data = new FormData(form);
+      const defaultButtonText = 'Send Message';
+
       button.disabled = true;
-      button.textContent = 'Sending…';
+      button.textContent = 'Sending...';
       status.style.display = 'none';
 
-      fetch(e.target.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(res => {
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: 'application/json' }
+        });
+
         button.disabled = false;
-        button.textContent = 'Send Message';
-        if (res.ok) {
-          status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent — I\'ll be in touch within 24 hours.';
+        button.textContent = defaultButtonText;
+
+        if (response.ok) {
+          status.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent. I will be in touch within 24 hours.';
           status.className = 'form-alert success';
           form.reset();
-        } else {
-          status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Something went wrong. Please try emailing me directly.';
-          status.className = 'form-alert error';
+          return;
         }
-      }).catch(() => {
-        button.disabled = false;
-        button.textContent = 'Send Message';
-        status.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Connection error. Please check your network.';
+
+        status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Something went wrong. Please try again or use the project inquiry form.';
         status.className = 'form-alert error';
-      });
-    };
+      } catch (error) {
+        button.disabled = false;
+        button.textContent = defaultButtonText;
+        status.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Connection error. Please check your network and try again.';
+        status.className = 'form-alert error';
+      }
+    });
   }
+
 </script>
 
 </body>
